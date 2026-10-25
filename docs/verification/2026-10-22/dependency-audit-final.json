@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "parameters": "--vulnerable --include-transitive",
+  "sources": [
+    "https://api.nuget.org/v3/index.json"
+  ],
+  "projects": [
+    {
+      "path": "<workspace>/src/ControllerMouse.Core/ControllerMouse.Core.csproj"
+    },
+    {
+      "path": "<workspace>/src/ControllerMouse.App/ControllerMouse.App.csproj"
+    },
+    {
+      "path": "<workspace>/tests/ControllerMouse.Tests/ControllerMouse.Tests.csproj"
+    }
+  ]
+}

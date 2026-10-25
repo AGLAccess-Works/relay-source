@@ -1,0 +1,5 @@
+System.InvalidOperationException: Native pointer guard stopped: foreground or pointer left the owned Relay window.
+   at ControllerMouse.App.MainWindow.<>c__DisplayClass80_0.<<RunNativeSidebarPointerChecks>g__MoveTo|8>d.MoveNext()
+--- End of stack trace from previous location ---
+   at ControllerMouse.App.MainWindow.RunNativeSidebarPointerChecks(String output)
+   at ControllerMouse.App.App.<>c__DisplayClass38_4.<<OnStartup>b__10>d.MoveNext()

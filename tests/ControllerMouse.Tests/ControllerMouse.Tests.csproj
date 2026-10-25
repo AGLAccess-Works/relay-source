@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net10.0</TargetFramework></PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\..\src\ControllerMouse.App\NativeMethods.cs" Link="NativeMethods.cs" />
+    <Compile Include="..\..\src\ControllerMouse.App\WindowsInputSink.cs" Link="WindowsInputSink.cs" />
+    <Compile Include="..\..\src\ControllerMouse.App\NativeDialogNavigation.cs" Link="NativeDialogNavigation.cs" />
+    <Compile Include="..\..\src\ControllerMouse.App\AccessibilityActionExecutor.cs" Link="AccessibilityActionExecutor.cs" />
+    <Compile Include="..\..\src\ControllerMouse.App\Log.cs" Link="Log.cs" />
+    <Compile Include="..\..\src\ControllerMouse.App\HapticDevice.cs" Link="HapticDevice.cs" />
+  </ItemGroup>
+  <ItemGroup><ProjectReference Include="..\..\src\ControllerMouse.Core\ControllerMouse.Core.csproj" /></ItemGroup>
+</Project>

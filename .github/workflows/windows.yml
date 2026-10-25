@@ -1,0 +1,31 @@
+name: Windows build
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: windows-2022
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          dotnet-version: '10.0.x'
+      - name: Test and build release packages
+        shell: pwsh
+        run: ./scripts/Build.ps1 -Installer -BootstrapInstallerTools
+      - name: Install, render, reinstall, and uninstall
+        shell: pwsh
+        run: ./scripts/Test-Installer.ps1
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: Relay-windows
+          path: |
+            artifacts/release/
+            artifacts/installer-test/*.log
+            artifacts/installer-test/*.txt
+            artifacts/installer-test/installed-smoke/

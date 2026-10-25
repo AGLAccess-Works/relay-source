@@ -1,0 +1,72 @@
+{
+  "AuditDate": "2026-10-22",
+  "Candidate": "<workspace>\\artifacts\\audit-2026-10-22\\reviewed-candidate\\XboxControllerMouse.exe",
+  "Sha256": "28a9fd0f14eb0afd3e98b5ab862410bee0fcdfc4cd4acd813d8f682add9e7e6b",
+  "Bytes": 205619158,
+  "Signature": "NotSigned",
+  "BundledFrameworks": [
+    {
+      "name": "Microsoft.NETCore.App",
+      "version": "10.0.13"
+    },
+    {
+      "name": "Microsoft.WindowsDesktop.App",
+      "version": "10.0.13"
+    }
+  ],
+  "CoreTests": {
+    "Evidence": "core-final-confirmed.txt",
+    "StressFrames": 10000,
+    "Passed": 358,
+    "Failed": 0
+  },
+  "CompleteWpfSuite": {
+    "PageWindowTextCases": 220,
+    "Status": "Passed",
+    "Evidence": "reviewed-acceptance/result.txt",
+    "WindowsTextTargets": 948,
+    "TargetChecks": 3480,
+    "WindowsTextCases": 66,
+    "PaletteCases": 489,
+    "ScreenshotCount": 83
+  },
+  "NativeTyping": {
+    "Status": "Passed",
+    "Evidence": "reviewed-native-keyboard/keyboard-input.txt",
+    "PhysicalControllerTested": false
+  },
+  "NativePointer": {
+    "Status": "Unverified: guarded integration attempts stopped",
+    "Cause": "Foreground or pointer ownership guards failed; cause not conclusively attributed",
+    "Evidence": [
+      "native-input/failure.txt",
+      "native-input-interactive/failure.txt",
+      "native-input-desktop/failure.txt"
+    ]
+  },
+  "Defender": {
+    "RemediationDisabled": true,
+    "Source": "No threats: defender-source-final.txt",
+    "Candidate": "No threats: defender-reviewed.txt"
+  },
+  "DependencyVulnerabilities": {
+    "Status": "No vulnerable packages reported",
+    "Evidence": "dependency-audit-final.json"
+  },
+  "SourceScan": {
+    "ManifestFiles": 136,
+    "CodeBuildFiles": 108,
+    "SuspiciousPatternMatches": 0,
+    "Evidence": "source-scan-summary.json"
+  },
+  "RemainingAcceptance": [
+    "Physical Xbox/Adaptive controllers and accessories",
+    "Live Narrator/NVDA/braille and Magnifier",
+    "Real Windows text-setting events and mixed-DPI transitions",
+    "Native pointer delivery",
+    "Screen tint feature availability",
+    "Signing and clean-machine installer lifecycle"
+  ],
+  "Published": false,
+  "ExistingUserSettingsModified": false
+}

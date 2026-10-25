@@ -1,0 +1,362 @@
+PASS neutral and stick drift produce no input
+PASS initial connection waits for all controls to be released
+PASS A holds and releases exactly once
+PASS B holds and releases exactly once
+PASS X holds and releases exactly once
+PASS rapid clicks are not dropped by arbitrary debounce
+PASS disconnect releases all mouse buttons
+PASS reconnect cannot replay a held button or old cursor movement
+PASS pause releases drag and prevents movement
+PASS resume waits for neutral
+PASS pause chord toggles once and suppresses individual shortcuts
+PASS Start is invoked once on release
+PASS View opens Accessibility once on release
+PASS Y Magnifier close is edge-triggered
+PASS trigger hysteresis prevents repeated zoom near threshold
+PASS both triggers operate independently
+PASS positive and negative stick endpoints are symmetric
+PASS radial dead zone preserves direction and caps diagonal speed
+PASS pointer speed is consistent at 50 and 125 Hz, smoothing 0
+PASS pointer speed is consistent at 50 and 125 Hz, smoothing 0.025
+PASS small fractional movements accumulate
+PASS neutral immediately stops smoothing tail
+PASS LB precision and RB boost adjust speed
+PASS long scheduling delays cannot cause giant cursor jumps
+PASS right stick scrolls at a bounded, time-based rate
+PASS horizontal and inverted scrolling
+PASS explicit arrow mapping repeats after delay instead of every poll
+PASS settings sanitize out-of-range and non-finite values
+PASS settings round trip and malformed JSON recovery
+PASS Windows INPUT and XInput structures have native sizes
+PASS failed mouse release is retried without abandoning a held button
+PASS failed mouse down never creates a fictitious held button
+PASS partial keyboard batch (1 events) cleans up accepted keys
+PASS partial keyboard batch (2 events) cleans up accepted keys
+PASS partial keyboard batch (3 events) cleans up accepted keys
+PASS blocked keyboard cleanup is retried on next poll
+PASS fully blocked shortcut has no held keys
+PASS wheel delta retains signed Win32 representation
+PASS live output feedback never reports blocked input as delivered
+  Synthetic transverse travel: 95 px → 0 px (not a clinical measure)
+PASS stabilization attenuates synthetic 8 Hz transverse jitter
+PASS stabilization stays time-correct at different poll rates
+PASS stabilization stops at neutral and never continues after pause
+PASS click hold rejects short repeated presses and releases immediately
+PASS disconnect discards partially completed click hold
+PASS all three tool buttons respect remapping and trigger only once
+PASS new settings clamp invalid values and recover unknown actions
+PASS v1 settings migrate with assistance disabled
+PASS prediction chooses targets ahead and responds to direction changes
+PASS prediction ignores idle, fast, distant, and invalid targets
+PASS prediction works at negative monitor coordinates
+PASS learning breaks close ties but cannot pull toward a distant target
+PASS target assist never initiates motion, acts during drag, or overrides reversal
+PASS assistance bends gently without increasing speed or jumping to target
+PASS target memory saves only known control counts and can be forgotten
+PASS long-running target learning remains bounded
+PASS accessibility catalogue covers vision hearing and interaction with unique settings
+PASS tool shortcuts emit balanced key down and key up sequences
+PASS target learning callback runs only for accepted left presses
+PASS motor output is deduplicated and a failed stop is retried
+PASS disconnect stops the old slot and reconnect does not replay a pulse
+PASS small scroll nudges emit fine wheel units promptly
+PASS scroll rate is independent of polling frequency
+PASS scroll neutral immediately clears motion and fractional remainder
+PASS scroll reversal cannot emit an old-direction tail
+PASS scroll dead zone and hysteresis suppress resting drift
+PASS compatibility mode emits only full wheel notches
+PASS step mode gives one notch per nudge without quick repeats
+PASS step repeat is bounded and supports immediate reversal
+PASS axis preference rejects diagonal drift and allows deliberate direction changes
+PASS scroll precision and boost change rate; precision toggle needs no held button
+PASS scroll stabilization adds damping without changing sustained target rate
+PASS invalid elapsed time and scheduler stalls cannot cause huge scrolling
+PASS scroll endpoints are symmetric and inverted direction is signed
+PASS scroll settings are sanitized and old settings inherit new defaults
+PASS settings updates and pause clear pending scrolling
+PASS haptic strength, cooldown, expiry and cancellation are bounded
+PASS boundary haptic has two short pulses separated by silence
+PASS target cues require a stable dwell and never repeat while hovering
+PASS boundary cues need observed movement in the commanded direction
+PASS boundary cues reject unknown providers, changed regions and changed direction
+PASS boundary cues tolerate UI Automation floating-point endpoint rounding
+PASS horizontal boundary direction follows Windows wheel semantics
+PASS scroll feedback only describes input accepted by Windows
+PASS A can map to a custom keyboard chord exactly once
+PASS A can be disabled
+PASS B can map to a custom keyboard chord exactly once
+PASS B can be disabled
+PASS X can map to a custom keyboard chord exactly once
+PASS X can be disabled
+PASS Y can map to a custom keyboard chord exactly once
+PASS Y can be disabled
+PASS LeftStick can map to a custom keyboard chord exactly once
+PASS LeftStick can be disabled
+PASS RightStick can map to a custom keyboard chord exactly once
+PASS RightStick can be disabled
+PASS LeftShoulder can map to a custom keyboard chord exactly once
+PASS LeftShoulder can be disabled
+PASS RightShoulder can map to a custom keyboard chord exactly once
+PASS RightShoulder can be disabled
+PASS LeftTrigger can map to a custom keyboard chord exactly once
+PASS LeftTrigger can be disabled
+PASS RightTrigger can map to a custom keyboard chord exactly once
+PASS RightTrigger can be disabled
+PASS Up can map to a custom keyboard chord exactly once
+PASS Up can be disabled
+PASS Down can map to a custom keyboard chord exactly once
+PASS Down can be disabled
+PASS Left can map to a custom keyboard chord exactly once
+PASS Left can be disabled
+PASS Right can map to a custom keyboard chord exactly once
+PASS Right can be disabled
+PASS Back can map to a custom keyboard chord exactly once
+PASS Back can be disabled
+PASS Start can map to a custom keyboard chord exactly once
+PASS Start can be disabled
+PASS shared mouse bindings keep drag held until the last owner releases
+PASS trigger mouse binding retains hysteresis and releases on disconnect
+PASS mapping change releases held inputs and requires neutral before new action
+PASS remapped View and Menu never fire when the pause chord is used
+PASS remapping a bumper removes its old pointer and scroll modifier
+PASS precision can move to another button and affects both sticks
+PASS trigger precision remains stable in the hysteresis band
+PASS navigation keyboard taps use extended-key flags on down and up
+PASS invalid mappings are sanitised while legacy tool choices survive
+PASS custom shortcut cleans up every possible partial accepted prefix
+PASS profiles preserve existing settings, isolate edits, and persist selection
+PASS accessibility defaults migrate once without changing active settings or restoring deleted profiles
+PASS accessibility defaults respect collisions and the library limit
+PASS profile export import round trip preserves mappings with a new identity
+PASS corrupt profile library is backed up before recovery saves
+PASS profile imports reject invalid versions, invalid bindings and oversized files
+PASS profile names and duplicate identities are validated
+PASS D-pad keeps ordinary desktop pointer movement when Relay and Narrator are inactive
+PASS Relay foreground enables arrow select and Tab navigation without Narrator or pointer movement
+PASS Entering Relay navigation releases drag without turning a held switch into Enter
+PASS Leaving Relay foreground restores pointer control only after held navigation controls are released
+PASS Narrator continues keyboard navigation after Relay loses foreground
+PASS Relay foreground does not override the fixed Adaptive starter switch meanings
+PASS Safe navigation test bumpers match previous and next control order
+PASS Adaptive starters keep existing preset order and unique stable identities
+PASS Adaptive starters validate with all controls explicit and no invented accessory presence
+PASS Adaptive menu switches work without a stick and keep their meanings with Narrator False
+PASS Adaptive menu switches work without a stick and keep their meanings with Narrator True
+PASS Adaptive menu switches produce arrows instead of moving the old mouse pointer
+PASS Adaptive joystick preset preserves pointer and click switch when Narrator is running
+PASS Adaptive reading pedals zoom once per press with trigger hysteresis and no combinations
+PASS Adaptive presets round trip without losing deliberate switch mappings
+PASS Adding available Adaptive starters does not rewrite completed profile libraries
+PASS existing keyboard action opens Relay without invoking protected Windows OSK
+PASS Windows OSK is retained as a separate explicit shortcut
+PASS keyboard modifiers latch locally and are consumed once in deterministic order
+PASS keyboard modifier deselection and hiding clear pending shortcuts
+PASS failed on-screen keyboard output reports failure and cleans accepted modifiers
+PASS an unreleased modifier prevents a subsequent keyboard chord
+PASS four-switch key selection reaches every uneven row and toolbar action in both directions
+PASS four-switch keyboard mode requires all four actual unmodified navigation assignments
+PASS switch and pedal keyboards route A B X Y internally without native Tab Escape click or zoom output
+PASS four-switch-only keyboard sequence selects a character space and erase then hides
+PASS four-switch key stepping and selection fire once per press and retain neutral after hiding
+PASS fixed switch keyboards ignore stick movement rather than changing button ownership
+PASS adaptive learning warms up and commits only at neutral
+PASS steady motion stays unchanged and variable motion learns bounded help across polling rates
+PASS off frozen dragging large motion and invalid intervals cannot learn or apply unwanted help
+PASS short repeated gestures accumulate evidence without learning from rest
+PASS learned smoothing reduces synthetic transverse wobble in actual pointer output
+PASS clicks and fast motion preserve brief correction evidence instead of starving learning
+PASS motion memory persists isolated profiles and forgets deleted profile statistics
+PASS adaptive processor still stops immediately at neutral and releases on pause
+PASS simultaneous and staggered combinations fire once without individual mouse clicks
+PASS every supported control can participate and reserved pause wins
+PASS single tap is retained and a hold starts after pairing time
+PASS nonparticipant mappings stay immediate and bumpers are suppressed in a combination
+PASS pending combinations are discarded on pause disconnect and settings changes
+PASS trigger hysteresis retains a pending partner and a consumed chord
+PASS overlapping chords use stable saved order and disjoint chords can both fire
+PASS chord keyboard action sends one complete tap and rapid single taps stay distinct
+PASS new accessibility actions use the documented key sequences
+PASS profile exports retain combinations and invalid imported combinations are rejected
+PASS chord validation rejects duplicates reversed pairs reserved and unsupported actions
+PASS setup automatically assigns keyboard and Magnifier combinations
+PASS every setup choice combination yields valid mappings and all selected tools
+PASS setup navigation allows controller clicking without firing accessibility tools
+PASS setup completion persists independently of active profile settings
+PASS setup preserves controller preference and recorded accessories
+PASS setup defaults to the existing controller plan
+PASS every switch and pedal setup combination keeps fixed single-input navigation and reachable tools
+PASS pedal setup always assigns both zoom pedals independently of optional tools
+PASS adaptive setup spare Menu tool has a predictable priority without requiring stick clicks
+PASS switch and pedal setup navigation cannot start any accessibility tool
+PASS combined reading and motor setup preserves independent display preferences and actual accessories
+PASS setup simple controls explicitly changes only the one-control preference
+PASS setup never changes the shared adaptive preset mappings
+PASS Windows text size is a minimum without multiplying or overwriting Relay preferences
+PASS new installations use Relay Default without duplicating saved text size
+PASS legacy appearance migrates light=True reduced-motion=False without altering access preferences
+PASS legacy appearance migrates light=True reduced-motion=True without altering access preferences
+PASS legacy appearance migrates light=False reduced-motion=False without altering access preferences
+PASS legacy appearance migrates light=False reduced-motion=True without altering access preferences
+PASS invalid saved visual enum values recover to supported accessible defaults
+PASS malformed custom colours cannot introduce transparent or unsupported colour values
+PASS valid custom colours normalize without changing the user's chosen palette
+PASS custom background darkness keeps legacy controller-art appearance truthful
+PASS explicit visual choices take priority over legacy appearance and motion flags
+PASS CVI starter reduces complexity without changing controller mappings or motor-access settings
+PASS visual preset RelayDefault preserves larger text and custom palette for later use
+PASS visual preset SoftLight preserves larger text and custom palette for later use
+PASS visual preset DeepDark preserves larger text and custom palette for later use
+PASS visual preset MaximumContrastLight preserves larger text and custom palette for later use
+PASS visual preset MaximumContrastDark preserves larger text and custom palette for later use
+PASS visual preset CviSimplified preserves larger text and custom palette for later use
+PASS visual preset Custom preserves larger text and custom palette for later use
+PASS CVI individual overrides survive validation and persistence without reapplying its defaults
+PASS one-control mode and custom highlights work independently of the CVI scheme
+PASS profile switches retain visual preferences without replacing input mappings or saved accessories
+PASS guided setup and preview preserve disabled hover reading and all independent visual choices
+PASS guided larger-text choice raises small text while keeping an existing extra-large choice
+PASS visual access settings survive the actual settings store and omit computed migration fields
+PASS profile export and import retain visual choices alongside deliberate switch mappings
+PASS native Windows imports load only from the system directory
+PASS central input state separates press hold release and disconnect with trigger hysteresis
+PASS Narrator is one shot per intentional press including long holds
+PASS ZoomIn is one shot per intentional press including long holds
+PASS ZoomOut is one shot per intentional press including long holds
+PASS CloseMagnifier is one shot per intentional press including long holds
+PASS simultaneous Narrator and Magnifier actions emit separate balanced batches
+PASS same-frame duplicate semantic actions coalesce across mappings and combinations
+PASS every Narrator partial prefix is cleaned before Magnifier output
+PASS exception after native key submission performs owned cleanup and preserves external keys
+PASS external modifier conflicts inject neither downs nor unsolicited releases
+PASS failed modifier cleanup also blocks same-frame pointer clicks and scroll
+PASS a held physical mouse button is never taken over or released without ownership
+PASS concurrent accessibility and ordinary shortcuts cannot interleave native batches
+PASS reentrant shortcut during a native batch is rejected without nested injection
+PASS disconnect cleans accepted modifier and drag state without requiring button-up
+PASS pause cleans accepted modifier and drag state without requiring button-up
+PASS profile cleans accepted modifier and drag state without requiring button-up
+PASS reset cleans accepted modifier and drag state without requiring button-up
+PASS explicit repeat follows time across polling rates and skips missed bursts
+PASS one-shot toggles and combination actions cannot acquire a repeat policy
+PASS Narrator start stop and Magnifier start use semantic state checks without killing processes
+PASS accessibility launch failure does not stop subsequent pointer or shortcut output
+PASS opt-in diagnostic ring is bounded and omits keyboard contents
+PASS safe navigation profile is explicit and does not change the default D-pad pointer
+  Fake-boundary torture: 10,000 frames in 404.9 ms (not an OS latency measurement).
+PASS synthetic rapid mixed-input torture leaves no Relay-owned keys buttons or scrolling
+PASS D-pad Right moves actual pointer and stops on release
+PASS D-pad Left moves actual pointer and stops on release
+PASS D-pad Up moves actual pointer and stops on release
+PASS D-pad Down moves actual pointer and stops on release
+PASS D-pad diagonals have bounded speed and opposing directions cancel
+PASS every accessibility settings page can be mapped without injecting keys
+PASS Narrator navigation uses approved arrows, tab, select and back without moving mouse
+PASS Narrator mode releases drag without replaying held A as select
+PASS left stick returns to mouse but held select cannot become a click
+PASS Narrator mode ignores stick drift and exits when Narrator stops
+PASS Narrator navigation can be disabled and reset safely
+PASS Narrator navigation retains button combinations
+PASS Adaptive hardware identity recognises 0b0a
+PASS Adaptive hardware identity recognises 0b0c
+PASS Adaptive hardware identity recognises 0b21
+PASS standard model is not inferred from unknown or ambiguous controller inventory
+PASS spatial keyboard selection accounts for wide space key and clamps vertical movement
+PASS Relay keyboard commands do not leak into desktop arrows clicks or zoom
+PASS keyboard selection takes priority over Narrator and profile combinations
+PASS closing keyboard requires neutral before restoring pointer bindings
+PASS left stick permits clicking keyboard by mouse and D-pad resumes key selection
+PASS keyboard repeats navigation but does not repeat select or symbol-page changes
+PASS accessory setup validates sockets names types and logical inputs
+PASS accessory capture requires neutral and rejects ambiguous presses
+PASS accessory feedback distinguishes stick axes triggers and Windows-reserved guide
+PASS accessory setup survives saved settings and profile export without altering button mappings
+PASS Connected controller inventory is ordered, distinct and restricted to XInput slots
+PASS Manual selection stays selected while present and disconnect safely falls back
+PASS Unavailable controller selection cannot change the active controller
+PASS Multiple controllers never receive unrelated or ambiguous model metadata
+PASS Single controller model resolves only with a current matching unique inventory
+PASS Manually chosen controller type applies only to the selected slot
+PASS Controller inventory snapshots cannot be altered by callers
+PASS Switching the central engine releases drag and prevents held new-controller replay
+PASS Presentation preferences survive profile changes without copying input mappings
+PASS Presentation preferences round trip and new installs use uncluttered light appearance
+PASS Configuration mode supplies keyboard navigation without pointer movement or Narrator
+PASS Configuration keeps safe fixed switch Enter Tab ShiftTab Escape and arrow mappings
+PASS Configuration suppresses Windows shortcuts unsafe keyboard chords stick pointer and scrolling
+PASS Configuration bypasses custom combination actions and pending single-button delays
+PASS Configuration entry and exit release drag and require neutral before any replay
+PASS Configuration navigation has priority over an open Relay typing keyboard
+PASS Configuration focus leaving Relay stops output and requires neutral inside Relay
+PASS Configuration preserves the reserved pause chord and safe neutral resume
+PASS Paused four switches navigate only the owned Relay configuration UI without enabling output
+PASS Paused ordinary controller supports Dpad Select Back and previous next without Narrator
+PASS Paused editor ignores mapped tools chords mouse movement scrolling and unsafe keys
+PASS Paused navigation requires explicit WPF ownership and an internal callback with no key fallback
+PASS Paused foreground changes invalidate queued commands and require neutral on editor return
+PASS Paused editor navigation remains internal when the typing keyboard is also open
+PASS Paused disconnect profile changes and resume cannot replay held selection
+PASS Paused safety chord remains usable outside Relay and toggles once per neutral cycle
+PASS Relay D-pad sends exactly one internal step per held press at 8ms polling
+PASS Relay D-pad sends exactly one internal step per held press at 20ms polling
+PASS Relay D-pad sends exactly one internal step per held press at 100ms polling
+PASS Relay rapid D-pad presses preserve every edge in physical order without native keys
+PASS Relay select back previous and next each have a single navigation owner
+PASS Relay navigation does not suppress simultaneous pointer movement and right-stick scrolling
+PASS Relay stick movement near its normal dead zone restores pointer clicking without rearming
+PASS Relay physical pointer use restores click bindings and never replays a held navigation switch
+PASS Queued Relay Select is discarded after physical mouse focus changes without disarming
+PASS Queued Relay Select is discarded after stick returns to pointer control without suppressing movement
+PASS Relay rapid released directions share a valid generation until their input mode changes
+PASS Relay navigation survives pre-existing stick jitter across its pointer dead zone
+PASS Relay navigation survives direction release with an already-held strong pointer stick
+PASS Relay navigation neutral hysteresis rearms a fresh deliberate stick gesture and suppresses held Select
+PASS Relay rapid released directions with unchanged stick drift survive delayed dispatcher delivery
+PASS Queued Relay Up survives fresh stick movement and release before dispatcher delivery
+PASS Queued Relay Down survives fresh stick movement and release before dispatcher delivery
+PASS Queued Relay Left survives fresh stick movement and release before dispatcher delivery
+PASS Queued Relay Right survives fresh stick movement and release before dispatcher delivery
+PASS Queued Relay Next survives fresh stick movement and release before dispatcher delivery
+PASS Queued Relay Previous survives fresh stick movement and release before dispatcher delivery
+PASS Physical mouse movement cancels queued Select and Back but preserves an accepted focus step
+PASS Physical mouse click invalidates every queued command while navigation mode remains armed
+PASS Physical mouse click invalidates every queued command while pointer mode remains armed
+PASS Relay pointer motion remains continuous while D-pad button ownership changes
+PASS Fixed Adaptive switches route safe navigation internally without changing saved meanings
+PASS Relay preserves non-navigation shortcuts and modified keyboard mappings
+PASS A saved repeating navigation key is edge-only in Relay and keeps its Windows repeat outside
+PASS Relay typing keyboard retains its separate navigation and cursor-key repeat
+PASS Outside Relay Narrator arrow repeats and pointer switching retain their existing behavior
+PASS Relay disconnect pause and unsafe reconnect retain neutral safeguards
+PASS Relay mouse tagging preserves signed movement wheel data and owned release retry
+PASS Queued Relay navigation is invalidated by pause and resume even after input becomes ready again
+PASS Queued Relay navigation is invalidated by profile settings even after input becomes ready again
+PASS Queued Relay navigation is invalidated by explicit reset even after input becomes ready again
+PASS Queued Relay navigation is invalidated by typing keyboard open and close even after input becomes ready again
+PASS Queued Relay navigation is invalidated by disconnect and reconnect even after input becomes ready again
+PASS Queued Relay navigation is invalidated by owned-input quarantine even after input becomes ready again
+PASS Native Relay dialog Up emits exactly one safe balanced owned tap
+PASS Native Relay dialog Down emits exactly one safe balanced owned tap
+PASS Native Relay dialog Left emits exactly one safe balanced owned tap
+PASS Native Relay dialog Right emits exactly one safe balanced owned tap
+PASS Native Relay dialog Next emits exactly one safe balanced owned tap
+PASS Native Relay dialog Previous emits exactly one safe balanced owned tap
+PASS Native Relay dialog Select emits exactly one safe balanced owned tap
+PASS Native Relay dialog Back emits exactly one safe balanced owned tap
+PASS Native Relay dialog rejects paused or quarantined without any Windows output
+PASS Native Relay dialog rejects zero dialog without any Windows output
+PASS Native Relay dialog rejects different foreground without any Windows output
+PASS Native Relay dialog rejects different process without any Windows output
+PASS Native Relay dialog rejects invalid command without any Windows output
+PASS Native Relay dialog rechecks foreground immediately before the owned tap
+PASS Native Relay dialog rechecks navigation cancellation before the owned tap
+PASS Native Relay dialog preserves externally held keyboard modifiers without output
+PASS Native Relay dialog partial key delivery blocks later navigation until owned cleanup succeeds
+PASS Native Relay dialog rejects navigation while an owned mouse release is pending
+PASS Native Relay dialog discards a queued Select after pause/resume even when rearmed
+PASS Native Relay dialog discards a queued Select after profile settings even when rearmed
+PASS Native Relay dialog discards a queued Select after capture/reset even when rearmed
+PASS Native Relay dialog discards a queued Select after typing keyboard even when rearmed
+PASS Native Relay dialog discards a queued Select after disconnect/reconnect even when rearmed
+PASS Native Relay dialog discards a queued Select after cleanup quarantine even when rearmed
+
+358 passed, 0 failed.

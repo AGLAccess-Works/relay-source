@@ -1,0 +1,5 @@
+System.InvalidOperationException: Adaptive ports light artwork is tiny or clipped in the desktop hero: 10.33846153846153,52.621506242448646,1099.323076923077,160.11083366894886; surface 742,354.
+   at ControllerMouse.App.MainWindow.<>c__DisplayClass221_0.<RunSurfaceChecks>g__CheckArtwork|9(String mode, String resource, Boolean shouldBeVisible)
+   at ControllerMouse.App.MainWindow.RunSurfaceChecks(String output)
+   at ControllerMouse.App.MainWindow.RunSmokeTest(String output)
+   at ControllerMouse.App.App.<>c__DisplayClass38_4.<<OnStartup>b__10>d.MoveNext()

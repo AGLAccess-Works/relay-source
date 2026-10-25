@@ -1,0 +1,470 @@
+<Window x:Class="ControllerMouse.App.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:ControllerMouse.App" xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework" xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+ Title="Relay by AGL Access Works" Width="1440" Height="900" MinWidth="640" MinHeight="480" WindowStyle="None" ResizeMode="CanResize" WindowStartupLocation="CenterScreen" Background="{DynamicResource SurfaceBackgroundBrush}" FontFamily="{DynamicResource InterfaceFontFamily}" FontSize="{DynamicResource MainFontSize}" Foreground="{DynamicResource TextPrimaryBrush}" Icon="Assets/app.ico" SizeChanged="WorkspaceSizeChanged">
+ <shell:WindowChrome.WindowChrome><shell:WindowChrome CaptionHeight="44" ResizeBorderThickness="6" CornerRadius="0" GlassFrameThickness="0" UseAeroCaptionButtons="False"/></shell:WindowChrome.WindowChrome>
+ <Grid><Grid.RowDefinitions><RowDefinition Height="44"/><RowDefinition/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+  <Grid Background="{DynamicResource SurfaceRaisedBrush}"><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+   <StackPanel x:Name="SidebarBrand" Orientation="Horizontal" VerticalAlignment="Center" Margin="22,0,0,0"><Viewbox Width="28" Height="28" Margin="0,0,10,0" IsHitTestVisible="False"><Canvas Width="36" Height="36">
+    <Path x:Name="BrandLogoTop" Fill="{DynamicResource BrandBrush}" Data="M 13,3 C 21,-1 32,1 34,9 C 36,15 32,22 29,25 L 24,18 C 27,13 24,7 19,7 Z"/>
+    <Path x:Name="BrandLogoLeft" Fill="{DynamicResource BrandBrush}" Data="M 8,4 L 14,9 C 9,13 6,19 3,25 C 0,20 1,9 4,6 Z"/>
+    <Path x:Name="BrandLogoBase" Fill="{DynamicResource BrandBrush}" Data="M 3,29 C 10,33 21,35 28,29 L 23,23 C 20,28 14,28 10,25 L 14,20 L 20,14 L 26,20 L 32,27 L 35,23 C 30,15 23,9 16,5 L 10,8 C 18,13 24,20 29,29 L 24,32 C 19,34 13,32 9,30 Z"/>
+   </Canvas></Viewbox><StackPanel><TextBlock Text="Relay" FontSize="20" FontWeight="SemiBold"/></StackPanel></StackPanel>
+   <StackPanel x:Name="WindowActions" Grid.Column="1" Orientation="Horizontal" shell:WindowChrome.IsHitTestVisibleInChrome="True">
+    <Button Click="MinimizeWindow" Style="{StaticResource CaptionButton}" AutomationProperties.Name="Minimize" ToolTip="Minimize"><Path Data="M 1,7 L 13,7" Stroke="{DynamicResource TextPrimaryBrush}" StrokeThickness="1.2" Width="14" Height="14" Stretch="None"/></Button>
+    <Button Click="MaximizeWindow" Style="{StaticResource CaptionButton}" AutomationProperties.Name="Maximize or restore" ToolTip="Maximize or restore"><Path Data="M 2,2 L 12,2 L 12,12 L 2,12 Z" Stroke="{DynamicResource TextPrimaryBrush}" StrokeThickness="1.2" Width="14" Height="14" Stretch="None"/></Button>
+    <Button Click="CloseWindow" Style="{StaticResource CaptionButton}" AutomationProperties.Name="Close Relay window" ToolTip="Close"><Path Data="M 2,2 L 12,12 M 2,12 L 12,2" Stroke="{DynamicResource TextPrimaryBrush}" StrokeThickness="1.2" Width="14" Height="14" Stretch="None"/></Button>
+   </StackPanel>
+  </Grid>
+  <Grid x:Name="Workspace" Grid.Row="1"><Grid.ColumnDefinitions><ColumnDefinition x:Name="SidebarColumn" Width="200"/><ColumnDefinition/></Grid.ColumnDefinitions>
+   <Border Background="{DynamicResource SurfaceRaisedBrush}" BorderBrush="{DynamicResource BorderDefaultBrush}" BorderThickness="0,0,1,0">
+    <ScrollViewer x:Name="NavigationViewport" SizeChanged="NavigationRailSizeChanged" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Focusable="False" CanContentScroll="False"><Grid x:Name="NavigationRailLayout" Margin="12,12,12,20"><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*" MinHeight="24"/><RowDefinition Height="Auto"/></Grid.RowDefinitions><StackPanel Grid.Row="0">
+     <StackPanel x:Name="NavigationButtons">
+      <RadioButton Content="Control" Tag="0" GroupName="Navigation" Style="{StaticResource NavigationItem}" Checked="Navigate" Click="Navigate" IsChecked="True"><RadioButton.Resources><sys:String x:Key="NavIcon">&#xE80F;</sys:String></RadioButton.Resources></RadioButton>
+      <RadioButton Content="Mapping" Tag="6" GroupName="Navigation" Style="{StaticResource NavigationItem}" Checked="Navigate" Click="Navigate"><RadioButton.Resources><sys:String x:Key="NavIcon">&#xE8AB;</sys:String></RadioButton.Resources></RadioButton>
+      <RadioButton Content="Hardware" Tag="9" GroupName="Navigation" Style="{StaticResource NavigationItem}" Checked="Navigate" Click="Navigate"><RadioButton.Resources><sys:String x:Key="NavIcon">&#xE7F4;</sys:String></RadioButton.Resources></RadioButton>
+      <RadioButton Content="Profiles" Tag="8" GroupName="Navigation" Style="{StaticResource NavigationItem}" Checked="Navigate" Click="Navigate"><RadioButton.Resources><sys:String x:Key="NavIcon">&#xE77B;</sys:String></RadioButton.Resources></RadioButton>
+      <RadioButton Content="Accessibility" Tag="3" GroupName="Navigation" Style="{StaticResource NavigationItem}" Checked="Navigate" Click="Navigate"><RadioButton.Resources><sys:String x:Key="NavIcon">&#xE776;</sys:String></RadioButton.Resources></RadioButton>
+      <RadioButton x:Name="SettingsNavigation" Content="Settings" Tag="7" GroupName="Navigation" Style="{StaticResource NavigationItem}" Checked="Navigate" Click="Navigate"><RadioButton.Resources><sys:String x:Key="NavIcon">&#xE713;</sys:String></RadioButton.Resources></RadioButton>
+     </StackPanel>
+     </StackPanel><StackPanel Grid.Row="2"><StackPanel x:Name="NavigationProfileHost" Visibility="Collapsed" Margin="4,0,4,12"/>
+     <RadioButton x:Name="HelpNavigation" Content="Help" Tag="4" GroupName="Navigation" Style="{StaticResource NavigationItem}" Checked="Navigate" Click="Navigate"><RadioButton.Resources><sys:String x:Key="NavIcon">&#xE897;</sys:String></RadioButton.Resources></RadioButton>
+     <RadioButton x:Name="AboutNavigation" Content="About" Tag="10" GroupName="Navigation" Style="{StaticResource NavigationItem}" Checked="Navigate" Click="Navigate"><RadioButton.Resources><sys:String x:Key="NavIcon">&#xE946;</sys:String></RadioButton.Resources></RadioButton>
+     <Border x:Name="PauseHelp" Visibility="Collapsed"><TextBlock Text="Ctrl + Alt + P pauses Relay"/></Border>
+    </StackPanel></Grid></ScrollViewer>
+   </Border>
+   <Grid Grid.Column="1"><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition/></Grid.RowDefinitions>
+    <Border x:Name="PageHeaderPanel" Background="{DynamicResource SurfaceBackgroundBrush}" Padding="24,10,24,12"><Grid x:Name="PageHeaderGrid"><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition x:Name="PageHeaderGapColumn" Width="20"/><ColumnDefinition x:Name="PageHeaderActionsColumn" Width="Auto"/></Grid.ColumnDefinitions><Grid.RowDefinitions><RowDefinition x:Name="PageHeaderTitleRow" Height="Auto"/><RowDefinition x:Name="PageHeaderActionsRow" Height="Auto"/></Grid.RowDefinitions>
+     <StackPanel x:Name="PageHeaderTitlePane"><Border x:Name="PageHeadingFrame" HorizontalAlignment="Left" BorderThickness="{DynamicResource FocusOuterThickness}" CornerRadius="4" Margin="-6,0,0,0"><Border.Style><Style TargetType="Border"><Setter Property="BorderBrush" Value="Transparent"/><Style.Triggers><DataTrigger Binding="{Binding IsKeyboardFocused, ElementName=PageHeading}" Value="True"><Setter Property="BorderBrush" Value="{DynamicResource FocusRingBrush}"/></DataTrigger></Style.Triggers></Style></Border.Style><Border BorderThickness="{DynamicResource FocusInnerThickness}" CornerRadius="2" Padding="3,0"><Border.Style><Style TargetType="Border"><Setter Property="BorderBrush" Value="Transparent"/><Style.Triggers><DataTrigger Binding="{Binding IsKeyboardFocused, ElementName=PageHeading}" Value="True"><Setter Property="BorderBrush" Value="{DynamicResource FocusInnerBrush}"/></DataTrigger></Style.Triggers></Style></Border.Style><TextBlock x:Name="PageHeading" Text="Control" FontSize="{DynamicResource PageTitleFontSize}" FontWeight="SemiBold" Foreground="{DynamicResource TextPrimaryBrush}"/></Border></Border><TextBlock x:Name="PageContext" Text="Your current Relay setup" Style="{StaticResource Caption}" Margin="0,2,0,0"/><TextBlock x:Name="StatusBadge" Text="No controller detected" Style="{StaticResource Caption}" Margin="0,4,0,0" Visibility="Collapsed"/></StackPanel>
+     <WrapPanel x:Name="PageHeaderActions" Grid.Column="2" VerticalAlignment="Center"><local:SettingChoiceButton x:Name="ProfileCombo" Width="180" SettingName="Profile" DisplayMemberPath="Name" SelectedValuePath="Id" SelectionChanged="ProfileChanged" AutomationProperties.AutomationId="ActiveProfileChoice" AutomationProperties.HelpText="Open saved profiles. Explore without changing your controls; choose a profile to activate it or Cancel to keep your current profile." Margin="0,0,8,4"/><Button Content="Keyboard" Click="OpenKeyboard" Style="{StaticResource HeaderAction}" AutomationProperties.Name="Show or hide Relay keyboard" Margin="0,0,8,4"/><Button x:Name="ThemeButton" Content="Use dark theme" Click="ToggleAppearance" Style="{StaticResource HeaderAction}" AutomationProperties.Name="Use dark theme" AutomationProperties.AutomationId="QuickThemeSwitch" AutomationProperties.HelpText="Change the colours while keeping your text size and controls." Margin="0,0,0,4"/></WrapPanel>
+    </Grid></Border>
+    <ScrollViewer x:Name="AccessViewport" Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled" Focusable="False" CanContentScroll="False">
+     <TabControl x:Name="Pages" Background="Transparent" BorderThickness="0" SelectionChanged="PageChanged">
+      <TabControl.Template><ControlTemplate TargetType="TabControl"><Grid><TabPanel IsItemsHost="True" KeyboardNavigation.TabNavigation="None" Height="1" Width="1" Opacity="0" IsHitTestVisible="False" HorizontalAlignment="Left" VerticalAlignment="Top"/><ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent"/></Grid></ControlTemplate></TabControl.Template>
+      <TabItem Header="Control"><ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="24,0,24,24"><StackPanel>
+       <Border x:Name="ControlStatusBar" CornerRadius="10" Background="{DynamicResource SurfaceRaisedBrush}" BorderBrush="{DynamicResource BorderDefaultBrush}" BorderThickness="0,0,0,1" Padding="0,0,0,8" Margin="0,0,0,12"><WrapPanel x:Name="ControlStatusStrip">
+        <Border x:Name="ServiceStatusCard" Style="{StaticResource CompactStatusCard}"><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="30"/><ColumnDefinition/></Grid.ColumnDefinitions><Ellipse x:Name="StatusDot" Width="12" Height="12" Fill="{DynamicResource SuccessBrush}" Stroke="{DynamicResource TextSecondaryBrush}" StrokeThickness="1" HorizontalAlignment="Left" VerticalAlignment="Center"/><StackPanel Grid.Column="1"><TextBlock Text="Relay control" Style="{StaticResource Caption}"/><TextBlock x:Name="ServiceBadge" Text="Relay inactive" FontWeight="SemiBold" Margin="0,3,0,0"/></StackPanel></Grid></Border>
+        <Border x:Name="ProfileStatusCard" Style="{StaticResource CompactStatusCard}"><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="0"/><ColumnDefinition/></Grid.ColumnDefinitions><StackPanel Grid.Column="1"><TextBlock Text="Profile" Style="{StaticResource Caption}"/><TextBlock x:Name="ProfileHeaderText" Text="My desktop" Margin="0,3,0,0"/></StackPanel></Grid></Border>
+        <Border x:Name="DeviceStatusCard" Style="{StaticResource CompactStatusCard}"><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="34"/><ColumnDefinition/></Grid.ColumnDefinitions><local:DecorativeGlyph Text="&#xE7F4;" FontFamily="Segoe MDL2 Assets" FontSize="20" Foreground="{DynamicResource AccentSecondaryBrush}" VerticalAlignment="Center"/><StackPanel Grid.Column="1"><TextBlock Text="Device" Style="{StaticResource Caption}"/><TextBlock x:Name="DeviceHeaderText" Text="No controller detected" FontWeight="SemiBold" Margin="0,3,0,0"/></StackPanel></Grid></Border>
+        <Border x:Name="ConnectionStatusCard" Style="{StaticResource CompactStatusCard}" BorderThickness="0"><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="34"/><ColumnDefinition/></Grid.ColumnDefinitions><local:DecorativeGlyph Text="&#xE71B;" FontFamily="Segoe MDL2 Assets" FontSize="20" Foreground="{DynamicResource TextSecondaryBrush}" VerticalAlignment="Center"/><StackPanel Grid.Column="1"><TextBlock Text="Connection &amp; battery" Style="{StaticResource Caption}"/><TextBlock x:Name="ConnectionHeaderText" Text="Disconnected" FontWeight="SemiBold" Margin="0,3,0,0"/></StackPanel></Grid></Border>
+       </WrapPanel></Border>
+       <Border x:Name="StatusBanner" Visibility="Collapsed"><TextBlock x:Name="StatusTitle" Text="No controller detected" AutomationProperties.LiveSetting="Polite"/></Border>
+       <Border x:Name="ControlDisconnectedPane" Background="{DynamicResource SurfaceRaisedBrush}" BorderBrush="{DynamicResource BorderDefaultBrush}" BorderThickness="1" CornerRadius="12" Padding="24" Margin="0,8,0,16" Visibility="Collapsed"><StackPanel>
+        <Border Width="64" Height="64" Background="{DynamicResource SelectionSurfaceBrush}" CornerRadius="32" HorizontalAlignment="Center" Margin="0,0,0,16"><local:DecorativeGlyph Text="&#xE7FC;" FontFamily="Segoe MDL2 Assets" FontSize="32" Foreground="{DynamicResource AccentSecondaryBrush}" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+        <TextBlock Text="{Binding Text, ElementName=StatusTitle}" FontSize="{DynamicResource SectionFontSize}" FontWeight="SemiBold" TextAlignment="Center" Margin="0,0,0,8"/>
+        <TextBlock x:Name="DisconnectedInstructionText" Text="{Binding Text, ElementName=StatusDetail}" Style="{StaticResource Caption}" TextAlignment="Center" MaxWidth="500" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+        <WrapPanel HorizontalAlignment="Center"><Button Content="Open Hardware" Tag="9" Click="Navigate" Style="{StaticResource Primary}" Margin="0,0,8,8"/><Button Content="Help connecting" Tag="4" Click="Navigate" Margin="0,0,0,8"/></WrapPanel>
+       </StackPanel></Border>
+       <Grid x:Name="ControlWorkspace"><Grid x:Name="ControlWorkbench">
+        <Grid.ColumnDefinitions><ColumnDefinition x:Name="ControlVisualColumn"/><ColumnDefinition Width="24"/><ColumnDefinition x:Name="ControlInspectorColumn" Width="330"/></Grid.ColumnDefinitions><Grid.RowDefinitions><RowDefinition x:Name="ControlVisualRow" Height="Auto"/><RowDefinition x:Name="ControlInspectorRow" Height="Auto"/></Grid.RowDefinitions>
+        <StackPanel x:Name="ControlVisualPane"><WrapPanel x:Name="ControlViewsHost" Margin="0,0,0,8"/><StackPanel x:Name="ControlSimpleHost" Visibility="Collapsed"/><local:NavigationGroupPresenter AutomationProperties.Name="Controller inputs"><local:ControllerSurface x:Name="LiveSurface" MinHeight="390" AutomationProperties.Name="Live controller inputs"/></local:NavigationGroupPresenter><TextBlock x:Name="PreviewCaption" Style="{StaticResource Caption}" Margin="0,8,0,0"/></StackPanel>
+        <Border x:Name="ControlInspectorPane" Grid.Column="2" CornerRadius="12" Background="{DynamicResource SurfaceRaisedBrush}" BorderBrush="{DynamicResource BorderDefaultBrush}" BorderThickness="1,0,0,0" Padding="20,8,0,8" VerticalAlignment="Top"><StackPanel x:Name="ControlInspectorHost"/></Border>
+       </Grid></Grid>
+       <Border x:Name="LastInputPanel" BorderBrush="{DynamicResource BorderDefaultBrush}" BorderThickness="0,1,0,0" Padding="0,8,0,4" Margin="0,8,0,0"><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition/></Grid.ColumnDefinitions><TextBlock Text="Last input:" Style="{StaticResource Caption}" Margin="0,0,10,0" VerticalAlignment="Center"/><TextBlock Grid.Column="1" x:Name="LastInputSummary" Text="No input yet" TextWrapping="Wrap" AutomationProperties.AutomationId="LastInputSummary"/></Grid></Border>
+       <local:NavigationGroupPresenter AutomationProperties.Name="Current assignments"><WrapPanel x:Name="ControlTilesHost" Margin="0,8,0,0"/></local:NavigationGroupPresenter>
+       <Border x:Name="StatusInstructionLine" BorderBrush="{DynamicResource BorderDefaultBrush}" BorderThickness="0,1,0,0" Padding="0,12,0,0" Margin="0,8,0,8"><StackPanel><WrapPanel><Button x:Name="PauseButton" Content="Pause control" Click="ToggleControl" HorizontalAlignment="Left" Style="{StaticResource HeaderAction}" Margin="0,0,12,8"/><Button x:Name="ControlChangeSetup" Content="Change my setup" Click="OpenSetup" AutomationProperties.Name="Change my setup" AutomationProperties.AutomationId="ControlChangeSetup" Margin="0,0,0,8"/></WrapPanel><TextBlock x:Name="StatusDetail" Text="Connect an Xbox or Xbox Adaptive Controller to begin using Relay." Style="{StaticResource Caption}"/></StackPanel></Border>
+       <Expander Header="Saved Adaptive accessories" Visibility="{Binding Visibility, ElementName=AccessoryPanel}" Margin="0,12,0,0"><StackPanel x:Name="AccessoryPanel" Visibility="Collapsed"><TextBlock x:Name="AccessorySummary" TextWrapping="Wrap" AutomationProperties.AutomationId="SavedAdaptiveAccessorySetup"/><TextBlock Text="Saved setup; physical plug detection is unavailable." Style="{StaticResource Caption}" Margin="0,8,0,12"/><Button Content="Identify or name an accessory" Click="OpenAccessories" AutomationProperties.Name="Set up Adaptive Controller accessories" HorizontalAlignment="Left"/></StackPanel></Expander>
+       <Expander Header="Setup options" Margin="0,12,0,0"><WrapPanel><Button Content="Choose a profile" Tag="8" Click="Navigate" Margin="0,0,10,10"/><Button Content="Hardware and accessories" Tag="9" Click="Navigate" Margin="0,0,0,10"/></WrapPanel></Expander>
+       <Expander Header="All current button actions" Margin="0,12,0,0"><StackPanel x:Name="MappingSummary"/></Expander>
+       <Expander Header="Check my controller input" Margin="0,12,0,0"><Border x:Name="InputTrail" BorderThickness="1" BorderBrush="{DynamicResource BorderStrongBrush}" Padding="16"><StackPanel><TextBlock Text="Last input" Style="{StaticResource Caption}"/><TextBlock x:Name="PhysicalInput" Text="Nothing pressed" Margin="0,6,0,12"/><TextBlock Text="Assigned action" Style="{StaticResource Caption}"/><TextBlock x:Name="RecognisedInput" Text="No controller" Margin="0,6,0,12"/><TextBlock Text="Last accepted input" Style="{StaticResource Caption}"/><TextBlock x:Name="WindowsOutput" Text="Nothing sent" Margin="0,6,0,0"/></StackPanel></Border></Expander>
+       <Grid Visibility="Collapsed"><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition x:Name="MappingColumn"/></Grid.ColumnDefinitions><local:ControllerView x:Name="ControllerArt" Height="300"/><TextBlock x:Name="StatusGlyph"/><UniformGrid x:Name="OverviewStats" Columns="3"><TextBlock x:Name="ControllerName"/><TextBlock x:Name="BatteryLabel"/><TextBlock x:Name="OverviewSpeed"/><TextBlock x:Name="SteadySummary"/></UniformGrid></Grid>
+      </StackPanel></ScrollViewer></TabItem>
+<TabItem Header="Pointer"><ScrollViewer VerticalScrollBarVisibility="Auto" Padding="26"><StackPanel>
+
+<Grid x:Name="PointerWorkbench"><Grid.ColumnDefinitions><ColumnDefinition x:Name="PointerFirstColumn"/><ColumnDefinition x:Name="PointerSecondColumn"/><ColumnDefinition x:Name="PointerThirdColumn"/></Grid.ColumnDefinitions><Grid.RowDefinitions><RowDefinition x:Name="PointerFirstRow" Height="Auto"/><RowDefinition x:Name="PointerSecondRow" Height="Auto"/><RowDefinition x:Name="PointerThirdRow" Height="Auto"/></Grid.RowDefinitions>
+
+<StackPanel x:Name="PointerDeadZonePane" Margin="0,0,22,0"><TextBlock Text="Stop pointer drift" FontSize="20" FontWeight="SemiBold"/><TextBlock Text="A dead zone ignores tiny stick movements. Increase it if your pointer moves when the stick is at rest." Style="{StaticResource Caption}" Margin="0,8,0,12"/><local:PointerPlot x:Name="DeadZonePlot" Height="210" Mode="DeadZone" AutomationProperties.Name="Live left-stick position and dead zone"/>
+
+<Grid Margin="0,16,0,3"><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBlock Margin="0,0,12,0" Text="Dead zone size" FontWeight="SemiBold"/><TextBlock Grid.Column="1" x:Name="DeadZoneValue" HorizontalAlignment="Right" Foreground="{DynamicResource AccentBrush}"/></Grid><Slider x:Name="DeadZoneSlider" Minimum="5" Maximum="40" TickFrequency="1" SmallChange="1" LargeChange="4" ValueChanged="SettingChanged" AutomationProperties.Name="Dead zone size" Margin="0,10,0,12"/>
+
+<Border Background="{DynamicResource ControlBrush}" CornerRadius="6" Padding="14" Margin="0,12,0,0"><TextBlock Text="Increase this if your pointer drifts at rest. The outer ring is full stick travel; the inner ring is half. The dot shows your stick, and the shaded centre ignores small movements." Style="{StaticResource Caption}"/></Border></StackPanel>
+
+<Border x:Name="PointerResponsePane" Grid.Column="1" BorderBrush="{DynamicResource LineBrush}" BorderThickness="1,0,1,0" Padding="22,0"><StackPanel><TextBlock Text="Speed and response" FontSize="18" FontWeight="SemiBold"/><TextBlock Text="How fast the pointer moves for how far you push. The dot shows your current movement." Style="{StaticResource Caption}" Margin="0,8,0,12"/><local:PointerPlot x:Name="ResponsePlot" Height="210" Mode="Response" AutomationProperties.Name="Pointer response curve"/>
+
+<Grid Margin="0,16,0,3"><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBlock Margin="0,0,12,0" Text="Pointer speed" FontWeight="SemiBold"/><TextBlock Grid.Column="1" x:Name="SpeedValue" HorizontalAlignment="Right" Foreground="{DynamicResource AccentBrush}"/></Grid><Slider x:Name="SpeedSlider" Minimum="200" Maximum="2600" TickFrequency="50" SmallChange="50" LargeChange="200" ValueChanged="SettingChanged" AutomationProperties.Name="Pointer speed" Margin="0,10,0,12"/><Grid Margin="0,16,0,3"><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBlock Margin="0,0,12,0" Text="Response curve" FontWeight="SemiBold"/><TextBlock Grid.Column="1" x:Name="CurveValue" HorizontalAlignment="Right" Foreground="{DynamicResource AccentBrush}"/></Grid><Slider x:Name="CurveSlider" Minimum="100" Maximum="300" TickFrequency="5" SmallChange="5" LargeChange="20" ValueChanged="SettingChanged" AutomationProperties.Name="Response curve" Margin="0,10,0,12"/>
+
+<TextBlock Text="A higher curve makes small movements gentler." Style="{StaticResource Caption}"/></StackPanel></Border>
+
+<StackPanel x:Name="PointerFinePane" Grid.Column="2" Margin="22,0,0,0"><TextBlock Text="Fine movement" FontSize="18" FontWeight="SemiBold"/><TextBlock Text="A precision mapping gives 28% pointer speed while held; a speed boost mapping gives 180%. Assign either in Mapping." Style="{StaticResource Caption}" Margin="0,8,0,20"/>
+
+<Grid Margin="0,16,0,3"><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBlock Margin="0,0,12,0" Text="Motion smoothing" FontWeight="SemiBold"/><TextBlock Grid.Column="1" x:Name="SmoothingValue" HorizontalAlignment="Right" Foreground="{DynamicResource AccentBrush}"/></Grid><Slider x:Name="SmoothingSlider" Minimum="0" Maximum="100" TickFrequency="5" SmallChange="5" LargeChange="20" ValueChanged="SettingChanged" AutomationProperties.Name="Motion smoothing" Margin="0,10,0,12"/>
+
+<TextBlock Text="A little damping softens movement. More adds delay; neutral always stops the pointer." Style="{StaticResource Caption}" Margin="0,0,0,22"/>
+
+<TextBlock Text="Start with a preset" FontSize="16" FontWeight="SemiBold"/><UniformGrid Columns="2" Margin="0,12,0,0"><Button Content="Precise" Tag="Precise" Click="ApplyPreset" Margin="0,0,8,8"/><Button Content="Balanced" Tag="Balanced" Click="ApplyPreset" Margin="0,0,0,8"/><Button Content="Quick" Tag="Quick" Click="ApplyPreset" Margin="0,0,8,8"/><Button Content="Steady hands" Tag="Steady" Click="ApplyPreset" Margin="0,0,0,8"/></UniformGrid>
+
+<Button Content="Stabilization &amp; target assistance →" Click="OpenAssist" Margin="0,12,0,0" Padding="8,10"/></StackPanel>
+
+</Grid>
+
+<StackPanel Margin="0,28,0,14"><TextBlock Text="Try it" Style="{StaticResource SectionHeading}"/><TextBlock Text="Move to each target and use your left-click mapping. Changes apply straight away." Style="{StaticResource Caption}" Margin="0,0,0,12"/><WrapPanel><TextBlock x:Name="PracticeScore" Text="0 of 5 targets hit" Style="{StaticResource Caption}" VerticalAlignment="Center" Margin="0,0,16,8" AutomationProperties.LiveSetting="Polite"/><Button Content="Start again" Click="ResetPractice" VerticalAlignment="Center" Margin="0,0,0,8"/></WrapPanel></StackPanel>
+
+<Border Background="{DynamicResource ControlBrush}" BorderBrush="{DynamicResource LineBrush}" BorderThickness="1" CornerRadius="8" Padding="20"><UniformGrid x:Name="PracticeTargets" Columns="5" Height="200">
+
+<StackPanel Margin="0,10,0,0"><Button Width="64" Height="64" Tag="64" Style="{StaticResource PracticeTarget}" Click="HitPracticeTarget" AutomationProperties.Name="Large practice target 64 pixels"/><TextBlock Text="Large · 64 px" Style="{StaticResource Caption}" HorizontalAlignment="Center" Margin="0,9,0,0"/></StackPanel><StackPanel Margin="0,75,0,0"><Button Width="48" Height="48" Tag="48" Style="{StaticResource PracticeTarget}" Click="HitPracticeTarget" AutomationProperties.Name="Medium practice target 48 pixels"/><TextBlock Text="Medium · 48 px" Style="{StaticResource Caption}" HorizontalAlignment="Center" Margin="0,9,0,0"/></StackPanel><StackPanel Margin="0,5,0,0"><Button Width="44" Height="44" Tag="36" Style="{StaticResource PracticeTarget}" Click="HitPracticeTarget" AutomationProperties.Name="Small practice target 36 pixels"/><TextBlock Text="Small · 36 px" Style="{StaticResource Caption}" HorizontalAlignment="Center" Margin="0,9,0,0"/></StackPanel><StackPanel Margin="0,88,0,0"><Button Width="44" Height="44" Tag="28" Style="{StaticResource PracticeTarget}" Click="HitPracticeTarget" AutomationProperties.Name="Smaller practice target 28 pixels"/><TextBlock Text="Smaller · 28 px" Style="{StaticResource Caption}" HorizontalAlignment="Center" Margin="0,9,0,0"/></StackPanel><StackPanel Margin="0,38,0,0"><Button Width="44" Height="44" Tag="20" Style="{StaticResource PracticeTarget}" Click="HitPracticeTarget" AutomationProperties.Name="Tiny practice target 20 pixels"/><TextBlock Text="Tiny · 20 px" Style="{StaticResource Caption}" HorizontalAlignment="Center" Margin="0,9,0,0"/></StackPanel>
+
+</UniformGrid></Border>
+
+</StackPanel></ScrollViewer></TabItem>
+
+<TabItem Header="Steady &amp; targets">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="26"><StackPanel>
+
+     <TextBlock Text="Movement assistance" FontSize="23" FontWeight="SemiBold"/><TextBlock Text="Reduce shake, soften small movements, and approach targets with confidence." Style="{StaticResource Caption}" Margin="0,8,0,23"/>
+
+     <Border Style="{StaticResource Card}" Margin="0,0,0,18"><StackPanel>
+
+      <TextBlock Text="Learn my movement" FontSize="20" FontWeight="SemiBold"/>
+
+      <TextBlock Text="Relay can learn how your stick moves and soften small adjustments. Learning starts after several seconds of movement and continues across clicks and pauses. It cannot tell which movements were mistakes." Style="{StaticResource Caption}" Margin="0,8,0,12"/>
+
+      <ComboBox x:Name="MotionLearningCombo" AutomationProperties.Name="Motion learning mode" SelectionChanged="MotionLearningChanged" HorizontalAlignment="Stretch" MinWidth="44"><ComboBoxItem Content="Off — use my manual settings"/><ComboBoxItem Content="Learn — adapt as I use Relay"/><ComboBoxItem Content="Frozen — keep current adjustments"/></ComboBox>
+
+      <TextBlock x:Name="MotionSummary" Style="{StaticResource Caption}" Margin="0,12,0,8"/>
+
+      <TextBlock Text="Adds at most 40 ms of smoothing and 15% slowdown for fine motion. Full-speed movements, clicking, dragging and scrolling are excluded. Nothing clicks or undoes actions for you. Only aggregate motion statistics are saved locally; no screen text or keystrokes." Style="{StaticResource Caption}"/>
+
+      <Button Content="Forget learned movement" Click="ForgetMotion" HorizontalAlignment="Left" Margin="0,12,0,0"/>
+
+      <TextBlock x:Name="MotionNotice" Style="{StaticResource Caption}" Margin="0,8,0,0" AutomationProperties.LiveSetting="Polite"/>
+
+     </StackPanel></Border>
+
+     <Grid x:Name="AssistanceWorkbench"><Grid.ColumnDefinitions><ColumnDefinition x:Name="AssistanceFirstColumn"/><ColumnDefinition Width="20"/><ColumnDefinition x:Name="AssistanceSecondColumn"/></Grid.ColumnDefinitions><Grid.RowDefinitions><RowDefinition x:Name="AssistanceFirstRow" Height="Auto"/><RowDefinition x:Name="AssistanceSecondRow" Height="Auto"/></Grid.RowDefinitions><Border x:Name="AssistanceMotionPane" Style="{StaticResource Card}" Margin="0,0,0,18"><StackPanel>
+
+      <TextBlock Text="Steady motion" FontSize="20" FontWeight="SemiBold"/>
+
+      <TextBlock Text="Adjustable damping for involuntary stick movement. Stronger stabilization adds some response delay; larger movements stay more responsive." Style="{StaticResource Caption}" Margin="0,8,0,10"/>
+
+      <CheckBox x:Name="TremorCheck" Content="Use tremor stabilization" Checked="OptionChanged" Unchecked="OptionChanged"/>
+
+      <Grid Margin="0,0,0,4"><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBlock Margin="0,0,12,0" Text="Stabilization strength" FontWeight="SemiBold"/><TextBlock Grid.Column="1" x:Name="StabilizationValue" HorizontalAlignment="Right" Foreground="{DynamicResource AccentBrush}"/></Grid><Slider x:Name="StabilizationSlider" Minimum="0" Maximum="100" TickFrequency="5" SmallChange="5" LargeChange="20" ValueChanged="SettingChanged" AutomationProperties.Name="Stabilization strength" Margin="0,10,0,23"/>
+
+      <Grid Margin="0,0,0,4"><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBlock Margin="0,0,12,0" Text="Press confirmation" FontWeight="SemiBold"/><TextBlock Grid.Column="1" x:Name="HoldValue" HorizontalAlignment="Right" Foreground="{DynamicResource AccentBrush}"/></Grid><TextBlock Text="Require a held mouse mapping to stay pressed briefly before a click. Release is immediate. View and Menu clicks on release are exempt." Style="{StaticResource Caption}" Margin="0,3,0,0"/><Slider x:Name="HoldSlider" Minimum="0" Maximum="500" TickFrequency="25" SmallChange="25" LargeChange="100" ValueChanged="SettingChanged" AutomationProperties.Name="Press confirmation" Margin="0,10,0,23"/>
+
+      <TextBlock Text="Try small adjustments in a familiar app. You can turn stabilization off at any time." Style="{StaticResource Caption}"/>
+
+     </StackPanel></Border>
+
+     <Border x:Name="AssistanceTargetPane" Grid.Column="2" Style="{StaticResource Card}" Margin="0,0,0,18"><StackPanel>
+
+      <Grid><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBlock Margin="0,0,12,0" Text="Target assist" FontSize="20" FontWeight="SemiBold"/><TextBlock Grid.Column="1" Text="Preview" HorizontalAlignment="Right" Foreground="{DynamicResource AccentBrush}" FontSize="14" Margin="0,5,0,0"/></Grid>
+
+      <TextBlock Text="Suggests nearby buttons and links along your movement direction, gently guides your approach, and slows inside the target. You make every click. Moving away releases the assist." Style="{StaticResource Caption}" Margin="0,8,0,10"/>
+
+      <CheckBox x:Name="TargetCheck" Content="Help me approach on-screen targets" Checked="OptionChanged" Unchecked="OptionChanged"/>
+
+      <Grid Margin="0,0,0,4"><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBlock Margin="0,0,12,0" Text="Assistance strength" FontWeight="SemiBold"/><TextBlock Grid.Column="1" x:Name="TargetValue" HorizontalAlignment="Right" Foreground="{DynamicResource AccentBrush}"/></Grid><Slider x:Name="TargetSlider" Minimum="0" Maximum="100" TickFrequency="5" SmallChange="5" LargeChange="20" ValueChanged="SettingChanged" AutomationProperties.Name="Assistance strength" Margin="0,10,0,23"/>
+
+      <CheckBox x:Name="HintCheck" Content="Show a small ring on the suggested target" Checked="OptionChanged" Unchecked="OptionChanged"/>
+
+      <CheckBox x:Name="RememberCheck" Content="Remember the types of controls I choose" Checked="OptionChanged" Unchecked="OptionChanged"/>
+
+      <TextBlock Text="Learning stays on this PC. Only counts of control types are saved—not screen text, screenshots, or a browsing history." Style="{StaticResource Caption}" Margin="0,3,0,14"/>
+
+      <StackPanel><TextBlock x:Name="MemorySummary" Text="No learned selections yet" Style="{StaticResource Caption}" VerticalAlignment="Center"/><Button Content="Forget learned choices" Click="ForgetTargets" HorizontalAlignment="Left" Margin="0,10,0,0" Padding="12,8"/></StackPanel>
+
+      <TextBlock x:Name="TargetStatus" Text="Target assist is off." Style="{StaticResource Caption}" Margin="0,16,0,0"/>
+
+      <TextBlock Text="Works with accessible controls in the active window. Some apps do not expose targets. Assistance is disabled while dragging and never starts movement on its own." Style="{StaticResource Caption}" Margin="0,10,0,0"/>
+
+     </StackPanel></Border></Grid>
+
+    </StackPanel></ScrollViewer>
+
+   </TabItem>
+
+<TabItem Header="Accessibility">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="26"><StackPanel>
+
+     <TextBlock Text="Choose the appearance and controls that work for you." Style="{StaticResource Caption}" Margin="0,0,0,14"/>
+     <StackPanel x:Name="VisualAccessHost" Margin="0,0,0,24"/>
+     <StackPanel Margin="0,0,0,16">
+      <CheckBox x:Name="ReadHoveredTextCheck" Content="Read items under the pointer" AutomationProperties.Name="Read items under the pointer" AutomationProperties.HelpText="Rest the pointer on an item briefly. Your screen reader reads its name and value without selecting it. Turn this off if Narrator's own mouse reading already reads items." Checked="PresentationOptionChanged" Unchecked="PresentationOptionChanged"/>
+      <TextBlock Text="Rest the pointer briefly to hear an item. This keeps keyboard focus where it is. Turn this off if Narrator already reads items under the mouse." Style="{StaticResource Caption}" TextWrapping="Wrap" Margin="0,4,0,0"/>
+     </StackPanel>
+     <Expander x:Name="ReadingFeedbackOptions" Header="Controller feedback" AutomationProperties.Name="Controller feedback" Margin="0,0,0,20"><StackPanel><CheckBox x:Name="ShowLabelsCheck" Content="Show controller labels" AutomationProperties.Name="Show controller labels" AutomationProperties.HelpText="Keep the major input names visible on the controller. Selected input details remain available in the inspector." Checked="PresentationOptionChanged" Unchecked="PresentationOptionChanged"/><CheckBox x:Name="InputAnnouncementsCheck" Content="Announce inputs while testing" AutomationProperties.Name="Announce inputs while testing" AutomationProperties.HelpText="Optional short screen-reader announcements for digital presses. Analogue coordinates are never read aloud." Checked="PresentationOptionChanged" Unchecked="PresentationOptionChanged"/><CheckBox x:Name="ReduceMotionCheck" Content="Reduce controller movement" AutomationProperties.Name="Reduce controller movement" AutomationProperties.HelpText="Keep clear pressed and selected states while reducing the controller's physical travel. Windows reduced-motion preferences are also respected." Checked="PresentationOptionChanged" Unchecked="PresentationOptionChanged"/><WrapPanel Margin="0,10,0,0"><Button Content="Movement assistance" Tag="2" Click="Navigate" Margin="0,0,10,10"/><Button Content="Input and feedback" Tag="5" Click="Navigate" Margin="0,0,0,10"/></WrapPanel></StackPanel></Expander>
+     <TextBlock Text="Windows accessibility tools" Style="{StaticResource SectionHeading}"/>
+
+     <Border Style="{StaticResource Card}" Margin="0,0,0,18"><StackPanel><TextBlock Text="Quick tools" FontSize="19" FontWeight="SemiBold"/><UniformGrid x:Name="QuickTools" Columns="3" Margin="0,14,0,0"/></StackPanel></Border>
+
+
+
+     <Expander x:Name="WindowsToolsOptions" Header="More Windows tools and settings" AutomationProperties.Name="More Windows tools and settings" AutomationProperties.AutomationId="WindowsToolsOptions" Margin="0,6,0,12"><StackPanel>
+
+     <TextBlock Text="Search by feature, such as Sticky Keys, braille, or captions" Style="{StaticResource Caption}" Margin="0,0,0,7"/>
+
+     <TextBox x:Name="AccessibilitySearch" TextChanged="SearchAccessibility" AutomationProperties.Name="Search accessibility features" Margin="0,0,0,16"/>
+
+     <StackPanel x:Name="AccessibilityGroups"/>
+
+     <TextBlock Text="Windows manages these features and their setup. Availability depends on your Windows version and connected hardware. Some shortcuts, including colour filters, must first be enabled in Windows settings." Style="{StaticResource Caption}" Margin="0,8,0,15"/>
+
+     <Button Content="Open all Windows accessibility settings" Click="OpenAccessibility" HorizontalAlignment="Left"/>
+     </StackPanel></Expander>
+
+    </StackPanel></ScrollViewer>
+
+   </TabItem>
+
+<TabItem Header="Controls &amp; help">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="26"><StackPanel>
+
+     <TextBlock Text="Using Relay" FontSize="24" FontWeight="SemiBold"/><TextBlock Text="Find your controls, try your setup and get help." Style="{StaticResource Caption}" Margin="0,8,0,23"/>
+
+     <WrapPanel Margin="0,0,0,18"><Button Content="Change my setup" Click="OpenSetup" Style="{StaticResource Primary}" AutomationProperties.Name="Change my setup" AutomationProperties.AutomationId="HelpChangeSetup" Margin="0,0,12,8"/><Button Content="Make Relay easier to see" Tag="3" Click="Navigate" Margin="0,0,0,8"/></WrapPanel>
+
+     <Border Style="{StaticResource Card}" Margin="0,0,0,18"><Grid x:Name="ControlGuide"/></Border>
+
+     <Border Style="{StaticResource Card}" Margin="0,0,0,18"><StackPanel><TextBlock Text="A smooth start" FontSize="19" FontWeight="SemiBold"/>
+
+      <TextBlock Text="1. Connect your controller using a connection that works in Windows.&#xA;2. Let go of its buttons, switches and sticks.&#xA;3. Choose Change my setup. Select your controls and the reading or movement help you want." Margin="0,13,0,12" LineHeight="27"/>
+
+      <TextBlock Text="Use your precision mapping for fine movement. Pause before playing games. Close the window to keep control running in the tray, or choose Quit app to stop completely." Style="{StaticResource Caption}"/>
+
+     </StackPanel></Border>
+
+     <Border Style="{StaticResource Card}"><StackPanel><TextBlock Text="You're always in control" FontSize="19" FontWeight="SemiBold"/>
+
+      <TextBlock Text="Stabilization and target assist are optional and may need adjustment for your movement. The app does not diagnose or treat tremor. Windows protects administrator windows and sign-in screens from simulated input; use your physical keyboard or mouse there." Style="{StaticResource Caption}" Margin="0,12,0,14"/>
+
+      <TextBlock Text="Magnifier follows the cursor when Follow mouse pointer is enabled in Windows Magnifier settings. Ctrl + Alt + P pauses this app without taking Magnifier's Ctrl + Alt + M shortcut." Style="{StaticResource Caption}" Margin="0,0,0,14"/>
+
+      <Button Content="Open local app data" Click="OpenDataFolder" HorizontalAlignment="Left"/>
+
+      <TextBlock Text="No account or cloud connection. Not affiliated with Microsoft or Xbox." Style="{StaticResource Caption}" Margin="0,16,0,0"/>
+
+     </StackPanel></Border>
+
+    </StackPanel></ScrollViewer>
+
+   </TabItem>
+
+<TabItem Header="Scroll &amp; feedback">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="26"><StackPanel>
+
+     <TextBlock Text="Scrolling and feedback" FontSize="24" FontWeight="SemiBold"/>
+
+     <TextBlock Text="Set a comfortable reading speed and choose the cues that help you." Style="{StaticResource Caption}" Margin="0,8,0,23"/>
+
+     <Grid x:Name="ScrollingWorkbench"><Grid.ColumnDefinitions><ColumnDefinition x:Name="ScrollingFirstColumn"/><ColumnDefinition Width="20"/><ColumnDefinition x:Name="ScrollingSecondColumn"/></Grid.ColumnDefinitions><Grid.RowDefinitions><RowDefinition x:Name="ScrollingFirstRow" Height="Auto"/><RowDefinition x:Name="ScrollingSecondRow" Height="Auto"/></Grid.RowDefinitions><Border x:Name="ScrollSettingsPane" Style="{StaticResource Card}" Margin="0,0,0,18"><StackPanel>
+
+      <TextBlock Text="Right-stick scrolling" FontSize="20" FontWeight="SemiBold"/>
+
+      <ComboBox x:Name="ScrollModeCombo" DisplayMemberPath="Name" SelectedValuePath="Mode" SelectionChanged="MappingChanged" AutomationProperties.Name="Scroll mode" Margin="0,16,0,10"/>
+
+      <TextBlock Text="Smooth sends small wheel increments. Compatible sends full notches for apps that need them. Step gives one notch per nudge, then repeats when held. Apps control the final scrolling animation." Style="{StaticResource Caption}"/>
+
+      <Grid Margin="0,15,0,4"><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBlock Margin="0,0,12,0" Text="Maximum scroll speed" FontWeight="SemiBold"/><TextBlock Grid.Column="1" x:Name="ScrollValue" HorizontalAlignment="Right" Foreground="{DynamicResource AccentBrush}"/></Grid><Slider x:Name="ScrollSlider" Minimum="1" Maximum="24" SmallChange="1" LargeChange="10" ValueChanged="SettingChanged" AutomationProperties.Name="Maximum scroll speed" Margin="0,10,0,12"/>
+
+      <Grid Margin="0,15,0,4"><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBlock Margin="0,0,12,0" Text="Right-stick dead zone" FontWeight="SemiBold"/><TextBlock Grid.Column="1" x:Name="ScrollDeadZoneValue" HorizontalAlignment="Right" Foreground="{DynamicResource AccentBrush}"/></Grid><Slider x:Name="ScrollDeadZoneSlider" Minimum="5" Maximum="40" SmallChange="1" LargeChange="10" ValueChanged="SettingChanged" AutomationProperties.Name="Right-stick dead zone" Margin="0,10,0,12"/>
+
+      <Grid Margin="0,15,0,4"><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBlock Margin="0,0,12,0" Text="Scroll response curve" FontWeight="SemiBold"/><TextBlock Grid.Column="1" x:Name="ScrollCurveValue" HorizontalAlignment="Right" Foreground="{DynamicResource AccentBrush}"/></Grid><Slider x:Name="ScrollCurveSlider" Minimum="100" Maximum="300" SmallChange="1" LargeChange="10" ValueChanged="SettingChanged" AutomationProperties.Name="Scroll response curve" Margin="0,10,0,12"/>
+
+      <Grid Margin="0,15,0,4"><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBlock Margin="0,0,12,0" Text="Scroll damping" FontWeight="SemiBold"/><TextBlock Grid.Column="1" x:Name="ScrollSmoothingValue" HorizontalAlignment="Right" Foreground="{DynamicResource AccentBrush}"/></Grid><Slider x:Name="ScrollSmoothingSlider" Minimum="0" Maximum="150" SmallChange="1" LargeChange="10" ValueChanged="SettingChanged" AutomationProperties.Name="Scroll damping" Margin="0,10,0,12"/>
+
+      <CheckBox x:Name="ScrollAxisLockCheck" Content="Prefer one scroll direction at a time" Checked="OptionChanged" Unchecked="OptionChanged"/>
+
+      <CheckBox x:Name="ScrollStabilizationCheck" Content="Extra damping for unsteady right-stick movement" Checked="OptionChanged" Unchecked="OptionChanged"/>
+
+      <CheckBox x:Name="ScrollModifiersCheck" Content="Use precision and speed boost mappings for scrolling too" Checked="OptionChanged" Unchecked="OptionChanged"/>
+
+      <CheckBox x:Name="ScrollPrecisionCheck" Content="Keep precise scrolling on without holding a button" Checked="OptionChanged" Unchecked="OptionChanged"/>
+
+      <CheckBox x:Name="InvertCheck" Content="Reverse scroll direction" Checked="OptionChanged" Unchecked="OptionChanged"/>
+
+      <TextBlock Text="Returning the stick to rest stops scrolling immediately. Extra damping may add delay; adjust it to suit your movement." Style="{StaticResource Caption}" Margin="0,10,0,0"/>
+
+     </StackPanel></Border>
+
+     <Border x:Name="FeedbackSettingsPane" Grid.Column="2" Style="{StaticResource Card}" Margin="0,0,0,18"><StackPanel>
+
+      <TextBlock Text="Your controller and feedback" FontSize="20" FontWeight="SemiBold"/>
+
+      <TextBlock Text="Brief, optional cues. Start softly and choose only the cues that help." Style="{StaticResource Caption}" Margin="0,8,0,12"/>
+
+      <TextBlock Text="Your controller" FontSize="20" FontWeight="SemiBold"/>
+      <TextBlock x:Name="ControllerModelText" TextWrapping="Wrap" Margin="0,8,0,8"/>
+      <ComboBox x:Name="ControllerTypeCombo" AutomationProperties.Name="Controller type" SelectionChanged="MappingChanged" Margin="0,0,0,8"><ComboBoxItem Content="Automatic detection"/><ComboBoxItem Content="Standard Xbox controller"/><ComboBoxItem Content="Xbox Adaptive Controller"/></ComboBox>
+      <TextBlock x:Name="ControllerSetupText" Style="{StaticResource Caption}" Margin="0,0,0,16"/>
+      <Button Content="Set up Adaptive accessories" Click="OpenAccessories" AutomationProperties.Name="Set up Adaptive accessories" MinHeight="44" Margin="0,0,0,16"/>
+      <CheckBox x:Name="NarratorNavigationCheck" Content="Use the D-pad to navigate menus" AutomationProperties.Name="Use the D-pad to navigate menus in Relay and with Narrator" AutomationProperties.HelpText="The D-pad starts menu navigation inside Relay, or in other apps when Narrator is running. RB next, LB previous, A select, B back. Move the left stick to return to mouse control. Turn this off to keep your saved mappings, including Adaptive switch profiles." Checked="OptionChanged" Unchecked="OptionChanged"/>
+
+      <TextBlock Text="Press the D-pad to navigate. LB: previous control. RB: next control. A: select. B: back. Move the left stick to use the mouse again. Button combinations still work." Style="{StaticResource Caption}" Margin="0,8,0,12"/>
+
+      <TextBlock Text="Magnifier: Narrator may say plus or minus because it announces shortcut keys. In Windows Narrator settings (Windows + Ctrl + N), open Have Narrator announce when I type. Adjust character and modifier-key announcements if you prefer less speech." Style="{StaticResource Caption}" Margin="0,0,0,12"/>
+
+      <CheckBox x:Name="HapticsCheck" Content="Enable controller vibration" Checked="OptionChanged" Unchecked="OptionChanged"/>
+
+      <Grid Margin="0,15,0,4"><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBlock Margin="0,0,12,0" Text="Vibration strength" FontWeight="SemiBold"/><TextBlock Grid.Column="1" x:Name="HapticStrengthValue" HorizontalAlignment="Right" Foreground="{DynamicResource AccentBrush}"/></Grid><Slider x:Name="HapticStrengthSlider" Minimum="0" Maximum="100" SmallChange="1" LargeChange="10" ValueChanged="SettingChanged" AutomationProperties.Name="Vibration strength" Margin="0,10,0,12"/>
+
+      <CheckBox x:Name="MagnifierHapticsCheck" Content="Confirm Magnifier shortcuts" Checked="OptionChanged" Unchecked="OptionChanged"/>
+
+      <CheckBox x:Name="ScrollHapticsCheck" Content="A light pulse when scrolling starts" Checked="OptionChanged" Unchecked="OptionChanged"/>
+
+      <CheckBox x:Name="TargetHapticsCheck" Content="A pulse when the pointer settles over a control" Checked="OptionChanged" Unchecked="OptionChanged"/>
+
+      <CheckBox x:Name="BoundaryHapticsCheck" Content="A double pulse when a scroll region reaches its end" Checked="OptionChanged" Unchecked="OptionChanged"/>
+
+      <WrapPanel Margin="0,12,0,12">
+
+       <Button Content="Try scroll cue" Tag="Scroll" Click="PreviewHaptic" Margin="0,0,8,8"/>
+
+       <Button Content="Try target cue" Tag="Target" Click="PreviewHaptic" Margin="0,0,8,8"/>
+
+       <Button Content="Try end cue" Tag="Boundary" Click="PreviewHaptic" Margin="0,0,8,8"/>
+
+      </WrapPanel>
+
+      <TextBlock x:Name="NavigationFeedback" Text="Feedback is ready when you are." Style="{StaticResource Caption}" AutomationProperties.LiveSetting="Polite"/>
+
+      <TextBlock Text="Target and end cues work in the active window when the app exposes accessibility information. Some apps do not support them. End cues require an observed move to the edge; they stay silent if you were already there. No screen text is stored." Style="{StaticResource Caption}" Margin="0,12,0,0"/>
+
+     </StackPanel></Border></Grid>
+
+    </StackPanel></ScrollViewer>
+
+   </TabItem>
+
+<TabItem Header="Mapping"><ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="24"><StackPanel>
+ <TextBlock Text="Choose an input, then choose what it does. The same inputs are available by keyboard, controller and Narrator." Style="{StaticResource Caption}" Margin="0,0,0,18"/>
+ <Grid x:Name="MappingWorkbench"><Grid.ColumnDefinitions><ColumnDefinition x:Name="MappingVisualColumn"/><ColumnDefinition Width="24"/><ColumnDefinition x:Name="MappingInspectorColumn" Width="330"/></Grid.ColumnDefinitions><Grid.RowDefinitions><RowDefinition x:Name="MappingVisualRow" Height="Auto"/><RowDefinition x:Name="MappingInspectorRow" Height="Auto"/></Grid.RowDefinitions>
+  <StackPanel x:Name="MappingVisualPane"><Grid x:Name="MappingInputWorkbench"><Grid.ColumnDefinitions><ColumnDefinition x:Name="MappingInputsCategoryColumn" Width="134"/><ColumnDefinition Width="12"/><ColumnDefinition x:Name="MappingInputsSurfaceColumn"/></Grid.ColumnDefinitions><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+   <WrapPanel x:Name="ActionCategoriesHost"/>
+   <StackPanel x:Name="MappingCanvasPane" Grid.Column="2"><StackPanel x:Name="MappingSimpleHost" Visibility="Collapsed"/><local:NavigationGroupPresenter AutomationProperties.Name="Inputs to configure"><local:ControllerSurface x:Name="MappingSurface" MinHeight="390" AutomationProperties.Name="Choose a controller input to map"/></local:NavigationGroupPresenter></StackPanel>
+  </Grid></StackPanel>
+  <Border x:Name="MappingInspectorPane" Grid.Column="2" Background="{DynamicResource SurfaceRaisedBrush}" BorderBrush="{DynamicResource BorderDefaultBrush}" BorderThickness="1" CornerRadius="10" Padding="16" VerticalAlignment="Top"><StackPanel x:Name="MappingInspectorHost"/></Border>
+ </Grid>
+ <TextBlock Text="Choose what it does" Style="{StaticResource SectionHeading}" Margin="0,24,0,12"/>
+ <Grid x:Name="MappingActionWorkbench"><Grid.ColumnDefinitions><ColumnDefinition x:Name="MappingCategoryColumn" Width="220"/><ColumnDefinition Width="24"/><ColumnDefinition x:Name="MappingChoicesColumn"/></Grid.ColumnDefinitions><Grid.RowDefinitions><RowDefinition x:Name="MappingCategoryRow" Height="Auto"/><RowDefinition x:Name="MappingChoicesRow" Height="Auto"/></Grid.RowDefinitions><WrapPanel x:Name="MappingChoicesHost" Grid.Column="2"/></Grid>
+ <TextBlock x:Name="MappingNotice" Style="{StaticResource Caption}" Margin="0,16,0,16" AutomationProperties.LiveSetting="Polite"/>
+ <WrapPanel Margin="0,8,0,20"><Button Content="Pointer movement" Tag="1" Click="Navigate" Margin="0,0,10,10"/><Button Content="Movement assistance" Tag="2" Click="Navigate" Margin="0,0,10,10"/><Button Content="Scrolling and feedback" Tag="5" Click="Navigate" Margin="0,0,0,10"/></WrapPanel>
+ <Expander Header="Button, trigger and keyboard shortcut options"><StackPanel Margin="0,12,0,20">
+
+
+  <TextBlock Text="Choose what a button does" FontSize="22" FontWeight="SemiBold"/><TextBlock Text="Choose a control, choose its action, then apply. Changes save to your active profile." Style="{StaticResource Caption}" Margin="0,6,0,24"/>
+
+  <TextBlock Text="Button or trigger"/><ComboBox x:Name="MappingControl" DisplayMemberPath="Name" SelectionChanged="MappingControlChanged" AutomationProperties.Name="Control to map" Margin="0,8,0,18"/>
+
+  <TextBlock Text="Action"/><ComboBox x:Name="MappingAction" DisplayMemberPath="Name" AutomationProperties.Name="Mapped action" Margin="0,8,0,12"/>
+
+  <Button Content="Record a keyboard shortcut…" Click="CaptureShortcut" HorizontalAlignment="Left" Margin="0,0,0,20"/>
+
+  <WrapPanel><Button Content="Apply assignment" Style="{StaticResource Primary}" Click="ApplyMapping" Margin="0,0,10,10"/><Button Content="Reset this control" Click="ResetMapping" Margin="0,0,0,10"/></WrapPanel>
+
+  <Button Content="Use D-pad to move the pointer" Click="ResetDpadPointer" HorizontalAlignment="Left" Margin="0,0,0,12"/>
+
+  <TextBlock Text="D-pad pointer speed"/><TextBlock x:Name="DpadSpeedValue" Style="{StaticResource Caption}"/>
+
+  <Slider x:Name="DpadSpeedSlider" Minimum="40" Maximum="500" SmallChange="10" LargeChange="40" ValueChanged="SettingChanged" AutomationProperties.Name="D-pad pointer speed" AutomationProperties.HelpText="Pixels per second. Lower values make small movements easier." Margin="0,8,0,16"/>
+
+
+
+  <Border BorderBrush="{DynamicResource LineBrush}" BorderThickness="0,1,0,0" Padding="0,18,0,0"><StackPanel><TextBlock Text="Reserved controls" FontWeight="SemiBold"/><TextBlock Text="View + Menu always pauses Relay. The left stick moves the pointer; the right stick scrolls. Windows reserves the Xbox button." Style="{StaticResource Caption}" Margin="0,8,0,0"/></StackPanel></Border>
+
+  <Border BorderBrush="{DynamicResource LineBrush}" BorderThickness="0,1,0,0" Margin="0,24,0,0" Padding="0,20,0,0"><StackPanel>
+
+   <TextBlock Text="Button combinations" FontSize="18" FontWeight="SemiBold"/>
+
+   <TextBlock Text="Press two controls together to run a tool or keyboard shortcut. Individual actions on those controls wait briefly for the second press. Release both before repeating. If combinations overlap, the first saved match wins." Style="{StaticResource Caption}" Margin="0,8,0,14"/>
+
+   <Button Content="Add keyboard + Magnifier examples" Click="AddExampleChords" HorizontalAlignment="Left" Margin="0,0,0,12"/>
+
+   <ListBox x:Name="ChordList" DisplayMemberPath="Name" SelectionChanged="ChordSelected" AutomationProperties.Name="Saved button combinations" Background="{DynamicResource ControlBrush}" Foreground="{DynamicResource TextBrush}" BorderBrush="{DynamicResource LineBrush}" MinHeight="80" MaxHeight="180" Margin="0,0,0,14"/>
+
+   <TextBlock Text="First control"/><ComboBox x:Name="ChordFirst" DisplayMemberPath="Name" AutomationProperties.Name="Combination first control" Margin="0,6,0,12"/>
+
+   <TextBlock Text="Second control"/><ComboBox x:Name="ChordSecond" DisplayMemberPath="Name" AutomationProperties.Name="Combination second control" Margin="0,6,0,12"/>
+
+   <TextBlock Text="Combined action"/><ComboBox x:Name="ChordAction" DisplayMemberPath="Name" AutomationProperties.Name="Combination action" Margin="0,6,0,12"/>
+
+   <Button Content="Record a combination shortcut…" Tag="Chord" Click="CaptureShortcut" HorizontalAlignment="Left" Margin="0,0,0,12"/>
+
+   <WrapPanel><Button Content="Save combination" Click="SaveChord" Margin="0,0,8,10"/><Button Content="Remove selected" Click="RemoveChord" Margin="0,0,0,10"/></WrapPanel>
+
+   <Grid Margin="0,12,0,0"><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBlock Margin="0,0,12,0" Text="Pairing time"/><TextBlock Grid.Column="1" x:Name="ChordWindowValue" HorizontalAlignment="Right"/></Grid>
+
+   <Slider x:Name="ChordWindowSlider" Minimum="80" Maximum="500" SmallChange="20" LargeChange="100" ValueChanged="SettingChanged" AutomationProperties.Name="Combination pairing time" Margin="0,8,0,10"/>
+
+   <TextBlock Text="Longer pairing time is easier to perform but delays individual actions. Controls with no combination stay immediate. After an individual hold begins, a late second button cannot turn it into a combination. View + Menu always pauses." Style="{StaticResource Caption}"/>
+
+   <TextBlock x:Name="ChordNotice" Style="{StaticResource Caption}" AutomationProperties.LiveSetting="Polite" Margin="0,12,0,0"/>
+
+  </StackPanel></Border>
+
+  <local:ControllerView x:Name="MappingArt" Visibility="Collapsed" Height="200" AutomationProperties.Name="Live mapping controller diagram" Margin="0,12,0,0"/>
+
+
+ </StackPanel></Expander>
+ <Expander Header="All current assignments" Margin="0,12,0,0"><StackPanel x:Name="MappingDetails" Margin="0,12,0,0"/></Expander>
+</StackPanel></ScrollViewer></TabItem>
+
+<TabItem Header="Settings"><ScrollViewer VerticalScrollBarVisibility="Auto" Padding="26"><StackPanel>
+
+<TextBlock Text="Preferences" FontSize="23" FontWeight="SemiBold" Margin="0,0,0,8"/><TextBlock Text="Preferences stay on this PC. No account required." Style="{StaticResource Caption}" Margin="0,0,0,22"/>
+
+<Border Style="{StaticResource Card}" Margin="0,0,0,18"><StackPanel><TextBlock Text="Guided setup" FontSize="18" FontWeight="SemiBold"/><TextBlock Text="Choose the accessibility help you want. Relay assigns the shortcuts and creates a new profile for you." Style="{StaticResource Caption}" Margin="0,8,0,12"/><Button Content="Set up Relay for me" Click="OpenSetup" HorizontalAlignment="Left" MinHeight="48"/></StackPanel></Border>
+
+<Border Style="{StaticResource Card}" Margin="0,0,0,18"><StackPanel><TextBlock Text="Appearance" FontSize="18" FontWeight="SemiBold"/><CheckBox x:Name="LightThemeCheck" Content="Use the light appearance" Checked="OptionChanged" Unchecked="OptionChanged"/><TextBlock Text="Interface size" Margin="0,16,0,8"/><ComboBox x:Name="ZoomCombo" SelectionChanged="ZoomChanged" AutomationProperties.Name="Interface size" Width="180" HorizontalAlignment="Left"><ComboBoxItem Content="100%"/><ComboBoxItem Content="125%"/><ComboBoxItem Content="150%"/><ComboBoxItem Content="175%"/><ComboBoxItem Content="200%"/></ComboBox><TextBlock Text="Ctrl + plus or minus changes interface size. Ctrl + 0 resets it. Larger text reflows the controls. Scroll down to reach every setting." Style="{StaticResource Caption}" Margin="0,8,0,12"/><Button Content="Open Visual Access" Tag="3" Click="Navigate" AutomationProperties.Name="Open Visual Access" AutomationProperties.AutomationId="SettingsOpenVisualAccess" HorizontalAlignment="Left" Margin="0,0,0,12"/><TextBlock Text="Choose a display scheme, text size, spacing and a simpler view in Accessibility. Windows contrast colours take priority when high contrast is enabled." Style="{StaticResource Caption}"/></StackPanel></Border>
+
+<Border Style="{StaticResource Card}" Margin="0,0,0,18"><StackPanel><TextBlock Text="Everyday preferences" FontSize="18" FontWeight="SemiBold"/><CheckBox x:Name="TrayCheck" Content="Keep running in the tray when the window closes" Checked="OptionChanged" Unchecked="OptionChanged"/><CheckBox x:Name="StartupCheck" Content="Start quietly when I sign in to Windows" Checked="StartupChanged" Unchecked="StartupChanged"/></StackPanel></Border>
+
+<Border Style="{StaticResource Card}"><StackPanel><TextBlock Text="Local settings" FontSize="18" FontWeight="SemiBold"/><TextBlock Text="Restore defaults resets the active profile, appearance and tray preference. Other profiles remain available. Learned target choices can be cleared separately in Assistance." Style="{StaticResource Caption}" Margin="0,10,0,18"/><WrapPanel><Button Content="Restore default settings" Click="RestoreDefaults" Margin="0,0,12,10"/><Button Content="Open local app data" Click="OpenDataFolder" Margin="0,0,12,10"/><Button Content="Quit Relay" Click="Quit" Margin="0,0,0,10"/></WrapPanel></StackPanel></Border>
+
+</StackPanel></ScrollViewer></TabItem><TabItem Header="Profiles"><ScrollViewer VerticalScrollBarVisibility="Auto" Padding="26"><StackPanel>
+
+ <TextBlock Text="A profile remembers your buttons, accessories and movement settings. Choose a ready-made profile or keep different setups for different tasks. Changes save automatically." Style="{StaticResource Caption}" Margin="0,0,0,26"/>
+
+ <Grid x:Name="ProfilesWorkbench"><Grid.ColumnDefinitions><ColumnDefinition x:Name="ProfilesListColumn" Width="330"/><ColumnDefinition Width="24"/><ColumnDefinition x:Name="ProfilesEditorColumn"/></Grid.ColumnDefinitions><Grid.RowDefinitions><RowDefinition x:Name="ProfilesListRow" Height="Auto"/><RowDefinition x:Name="ProfilesEditorRow" Height="Auto"/></Grid.RowDefinitions>
+
+  <StackPanel x:Name="ProfilesListPane"><TextBlock Text="Your profiles" Style="{StaticResource SectionHeading}"/><StackPanel x:Name="ProfileList" AutomationProperties.Name="Saved profiles"/><Button Content="Create a profile from this setup" Click="DuplicateProfile" Margin="0,12,0,0"/></StackPanel>
+
+  <Border x:Name="ProfilesEditorPane" Grid.Column="2" BorderBrush="{DynamicResource BorderDefaultBrush}" BorderThickness="1,0,0,0" Padding="24,0,0,0"><StackPanel>
+
+   <TextBlock Text="Profile name" FontWeight="SemiBold"/><TextBox x:Name="ProfileName" MaxLength="60" AutomationProperties.Name="Profile name" Margin="0,8,0,12"/>
+
+   <WrapPanel><Button Content="Rename" Click="RenameProfile" Margin="0,0,10,10"/><Button Content="Copy as new profile" Click="DuplicateProfile" Margin="0,0,10,10"/></WrapPanel>
+
+   <TextBlock Text="Each profile stores movement, scrolling, assistance, feedback and button assignments. Appearance and startup are shared." Style="{StaticResource Caption}" Margin="0,12,0,24"/>
+
+   <TextBlock Text="Accessibility starter profiles" FontWeight="SemiBold"/><ComboBox x:Name="StarterProfile" DisplayMemberPath="Name" SelectionChanged="StarterProfileChanged" AutomationProperties.Name="Accessibility starter profile" Margin="0,8,0,12"/><TextBlock x:Name="StarterDescription" Style="{StaticResource Caption}" Margin="0,0,0,12"/><Button Content="Add starter profile" Click="AddStarterProfile" HorizontalAlignment="Left" Margin="0,0,0,24"/><TextBlock Text="Share or back up" FontWeight="SemiBold" Margin="0,0,0,12"/><WrapPanel><Button Content="Import profile…" Click="ImportProfile" Margin="0,0,10,10"/><Button Content="Export profile…" Click="ExportProfile" Margin="0,0,0,10"/></WrapPanel>
+
+   <Border BorderBrush="{DynamicResource LineBrush}" BorderThickness="0,1,0,0" Margin="0,20,0,0" Padding="0,20,0,0"><Button x:Name="DeleteProfileButton" Content="Delete this profile…" Click="DeleteProfile" HorizontalAlignment="Left"/></Border>
+
+   <TextBlock x:Name="ProfileNotice" Style="{StaticResource Caption}" Margin="0,20,0,0" AutomationProperties.LiveSetting="Polite"/>
+
+  </StackPanel></Border>
+
+ </Grid>
+
+</StackPanel></ScrollViewer></TabItem>
+      <TabItem Header="Hardware"><ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="24"><StackPanel>
+
+       <Grid x:Name="HardwareWorkbench"><Grid.ColumnDefinitions><ColumnDefinition x:Name="HardwareVisualColumn"/><ColumnDefinition Width="24"/><ColumnDefinition x:Name="HardwareInspectorColumn" Width="330"/></Grid.ColumnDefinitions><Grid.RowDefinitions><RowDefinition x:Name="HardwareVisualRow" Height="Auto"/><RowDefinition x:Name="HardwareInspectorRow" Height="Auto"/></Grid.RowDefinitions>
+        <StackPanel x:Name="HardwareVisualPane"><WrapPanel x:Name="HardwareViewsHost" Margin="0,0,0,8"/><StackPanel x:Name="HardwareSimpleHost" Visibility="Collapsed"/><local:NavigationGroupPresenter AutomationProperties.Name="Hardware inputs"><local:ControllerSurface x:Name="HardwareSurface" MinHeight="390" AutomationProperties.Name="Controller hardware and adaptive inputs"/></local:NavigationGroupPresenter></StackPanel>
+        <Border x:Name="HardwareInspectorPane" Grid.Column="2" Background="Transparent" VerticalAlignment="Top"><StackPanel>
+         <Border Background="{DynamicResource SurfaceRaisedBrush}" BorderBrush="{DynamicResource BorderDefaultBrush}" BorderThickness="1" CornerRadius="10" Padding="16"><StackPanel x:Name="HardwareDeviceHost"/></Border>
+         <Expander x:Name="HardwareInputDetails" Header="Selected input" IsExpanded="False" Margin="0,12,0,0"><Border Background="{DynamicResource SurfaceRaisedBrush}" BorderBrush="{DynamicResource BorderDefaultBrush}" BorderThickness="1" CornerRadius="10" Padding="16"><StackPanel x:Name="HardwareInspectorHost"/></Border></Expander>
+        </StackPanel></Border>
+       </Grid>
+       <TextBlock Text="Inputs" Style="{StaticResource SectionHeading}" Margin="0,24,0,12"/><local:NavigationGroupPresenter AutomationProperties.Name="Saved input assignments"><WrapPanel x:Name="HardwareInputsHost"/></local:NavigationGroupPresenter>
+       <TextBlock Text="Adaptive accessory names are saved with your profile. Input activity does not confirm which physical sockets are plugged in." Style="{StaticResource Caption}" Margin="0,16,0,16"/>
+       <Button Content="Identify or name an accessory" Click="OpenAccessories" AutomationProperties.Name="Identify and name an Adaptive accessory" HorizontalAlignment="Left"/>
+      </StackPanel></ScrollViewer></TabItem>
+      <TabItem Header="About"><ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="24"><StackPanel>
+       <TextBlock Text="Relay" Style="{StaticResource SectionHeading}"/><TextBlock Text="by AGL Access Works" Margin="0,0,0,16"/>
+       <TextBlock Text="Use the controls that work for you to make Windows respond." Margin="0,0,0,16"/>
+       <TextBlock x:Name="AboutVersionText" Style="{StaticResource Caption}" Margin="0,0,0,16"/>
+       <TextBlock Text="Your preferences are saved on this PC. No Relay account is needed." Style="{StaticResource Caption}" Margin="0,0,0,20"/>
+       <Button Content="Open Accessibility" Tag="3" Click="Navigate" HorizontalAlignment="Left" AutomationProperties.Name="Open Accessibility" AutomationProperties.AutomationId="AboutOpenAccessibility" Margin="0,0,0,12"/>
+       <Button Content="Read Relay help" Tag="4" Click="Navigate" HorizontalAlignment="Left" AutomationProperties.Name="Read Relay help" AutomationProperties.AutomationId="AboutOpenHelp"/>
+      </StackPanel></ScrollViewer></TabItem>
+     </TabControl>
+    </ScrollViewer>
+   </Grid>
+  </Grid>
+  <Border x:Name="FooterPanel" Grid.Row="2" Background="{DynamicResource SurfaceSubtleBrush}" BorderBrush="{DynamicResource BorderDefaultBrush}" BorderThickness="0,1,0,0" Padding="24,6"><TextBlock x:Name="Footer" Text="Settings saved on this PC" Style="{StaticResource Caption}" AutomationProperties.LiveSetting="Polite"/></Border>
+ </Grid>
+</Window>

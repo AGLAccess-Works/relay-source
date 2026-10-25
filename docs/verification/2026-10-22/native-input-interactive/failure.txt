@@ -1,0 +1,3 @@
+System.InvalidOperationException: Could not position the pointer within the owned Relay test window.
+   at ControllerMouse.App.MainWindow.RunNativeSidebarPointerChecks(String output)
+   at ControllerMouse.App.App.<>c__DisplayClass38_4.<<OnStartup>b__10>d.MoveNext()

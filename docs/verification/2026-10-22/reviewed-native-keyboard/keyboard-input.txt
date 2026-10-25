@@ -1,0 +1,1 @@
+PASS: actual controller engine -> SendInput mouse click -> Relay key -> SendInput keyboard -> focused test TextBox. Plain key, Shift, Ctrl+A and Backspace delivered; editor focus retained; no inputs held. Only owned test windows received input.

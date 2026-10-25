@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows10.0.19041.0</TargetFramework>
+    <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <AssemblyName>XboxControllerMouse</AssemblyName>
+    <Product>Relay</Product>
+    <Title>Relay — Controller access for Windows</Title>
+    <Description>Accessible controller navigation for Windows</Description>
+    <RootNamespace>ControllerMouse.App</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Assets\app.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ControllerMouse.Core\ControllerMouse.Core.csproj" />
+    <Resource Include="Assets\app.ico" />
+    <Resource Include="Assets\Controllers\*.png" />
+  </ItemGroup>
+  <!-- Scope the release patch to .NET; the Windows SDK reference has its own version. -->
+  <ItemGroup Condition="'$(RelayRuntimeFrameworkVersion)' != ''">
+    <FrameworkReference Update="Microsoft.NETCore.App;Microsoft.WindowsDesktop.App" RuntimeFrameworkVersion="$(RelayRuntimeFrameworkVersion)" />
+    <KnownAppHostPack Update="Microsoft.NETCore.App" AppHostPackVersion="$(RelayRuntimeFrameworkVersion)" />
+  </ItemGroup>
+</Project>

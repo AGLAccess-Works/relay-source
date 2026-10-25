@@ -1,0 +1,3 @@
+Scan starting...
+Scan finished.
+Scanning <workspace>\artifacts\audit-2026-10-22\source-scan found no threats.

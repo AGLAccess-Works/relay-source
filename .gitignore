@@ -1,0 +1,44 @@
+# Build outputs, local tools and source handoffs
+**/bin/
+**/obj/
+**/x64/
+artifacts/
+.tools/
+tmp/
+.vs/
+
+# Per-user IDE state and generated binaries
+*.user
+*.suo
+*.exe
+*.dll
+*.pdb
+*.obj
+*.lib
+*.pch
+*.ilk
+*.idb
+*.tlog
+*.log
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+*.pfx
+*.p12
+
+# Local editor and macOS state
+.DS_Store
+._*
+.idea/
+.vscode/
+
+# Private configuration and signing material
+.env
+.env.*
+!.env.example
+*.pfx
+*.p12
+*.pem
+*.key

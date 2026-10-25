@@ -1,0 +1,4 @@
+System.InvalidOperationException: Windows did not grant foreground focus to the owned verification window. No input was sent.
+   at ControllerMouse.App.NativeVerificationFocus.Acquire(Window window)
+   at ControllerMouse.App.MainWindow.RunNativeSidebarPointerChecks(String output)
+   at ControllerMouse.App.App.<>c__DisplayClass38_4.<<OnStartup>b__10>d.MoveNext()

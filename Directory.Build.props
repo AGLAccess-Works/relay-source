@@ -1,0 +1,12 @@
+<Project>
+  <PropertyGroup>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <Version>1.4.0-beta.20</Version>
+    <Authors>Alex Liddell; AGL Access Works</Authors>
+    <Company>AGL Access Works</Company>
+    <Product>Relay</Product>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+</Project>

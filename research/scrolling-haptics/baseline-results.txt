@@ -1,0 +1,11 @@
+Current 1.1 core; synthetic inputs; 125 Hz; defaults; no Windows input or haptics.
+deflection_percent,first_event_ms,event_count_60s,distinct_deltas
+20,32848,1,120
+25,5016,11,120
+50,520,117,120
+75,216,278,120
+100,128,480,120
+Ten separate 200 ms nudges at 50%: 0 wheel events.
+One second full right stick, None: 960 wheel units.
+One second full right stick, LeftShoulder: 960 wheel units.
+One second full right stick, RightShoulder: 960 wheel units.
