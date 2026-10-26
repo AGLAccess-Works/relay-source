@@ -8,7 +8,7 @@
 - This repository was prepared on **25 October 2026** to document the project, its low vision purpose and its verification status.
 - Source archive: `Relay-Source-1.4.0-beta.20-2026-10-22.zip`.
 
-Repository preparation added attribution, review documentation and GitHub configuration. Existing application logic and test fixtures were preserved. Automated preparation assistance is not a claim of authorship of the supplied application.
+Repository preparation added attribution, review documentation and GitHub configuration. Existing application logic was preserved. On 26 October, verification was corrected to account for intentional controller-board scrolling, and the Windows runner display was configured for the desktop layout suite. Automated preparation assistance is not a claim of authorship of the supplied application.
 
 ## Licensing
 

@@ -1,0 +1,4 @@
+PASS: per-user install, executable, uninstall registration, and Start menu shortcut target.
+PASS: installed self-contained app startup, UI, settings, and paused hardware service smoke test.
+PASS: same-version upgrade/reinstall.
+PASS: uninstall removed the executable, uninstall registration, and test shortcut.

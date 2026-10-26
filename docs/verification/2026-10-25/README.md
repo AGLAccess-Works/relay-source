@@ -1,5 +1,7 @@
 # GitHub Windows verification — 25 October 2026
 
+**Historical failure, resolved:** see the [passing 26 October run and explanation](../2026-10-26/README.md).
+
 Initial source import, before the documentation and history cleanup. Runner: `windows-2022`, .NET 10 SDK.
 
 [Complete Windows build run](https://github.com/AGLAccess-Works/relay-source/actions).
@@ -12,7 +14,7 @@ Initial source import, before the documentation and history cleanup. Runner: `wi
 | Installed-app smoke suite | Failed in Adaptive ports light artwork bounds check |
 | Reinstall lifecycle | Not reached after smoke failure |
 
-The smoke failure reports artwork bounds of approximately 1099 × 160 inside a 742 × 354 controller surface. See [the unchanged failure report](installed-smoke-failure.txt). It occurred in `MainWindow.SurfaceVerification.cs`, in `CheckArtwork` during `RunSurfaceChecks`. The failure needs investigation to distinguish a rendering defect from verification/layout timing on the hosted runner; it has not been resolved or suppressed.
+The smoke failure reports artwork bounds of approximately 1099 × 160 inside a 742 × 354 controller surface. See [the unchanged failure report](installed-smoke-failure.txt). It occurred in `MainWindow.SurfaceVerification.cs`, in `CheckArtwork` during `RunSurfaceChecks`. This was the unresolved result on 25 October. The subsequent investigation and test correction are recorded in the [26 October verification](../2026-10-26/README.md).
 
 `Test-Installer.ps1` attempts uninstall in its cleanup block even when the smoke test fails. This does not establish that the full installer lifecycle suite passed.
 

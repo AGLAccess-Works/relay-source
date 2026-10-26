@@ -1,0 +1,142 @@
+PASS: independent named UIA Buttons and Invoke with stable IDs and no live announcement spam; at least 44-pixel bounding targets; rectangular targets do not overlap, and sampled directional D-pad click regions do not overlap. Hardware provides full-size input-list alternatives. Configuration selection, keyboard focus and physical activity have independent rendered states. Physical input and Tab focus preserve selection; label toggles preserve part instances; analog triggers/sticks and D-pad diagonals update truthfully; release and disconnect clear state; reduced motion keeps feedback visible. Reserved Xbox/Profile limitations, exact saved-port metadata and truthful logical activity remain. Nine 1440×900 previews cover standard, Adaptive front and Adaptive ports in light, dark and high contrast. No desktop output service or Windows input was used. Live screen-reader speech and physical hardware remain manual acceptance.
+
+Standard: LeftTrigger; 60.8 × 44.8; Left trigger, Magnifier: zoom out; Released
+Standard: RightTrigger; 60.8 × 44.8; Right trigger, Magnifier: zoom in; Released
+Standard: LeftShoulder; 100.8 × 44.0; Left bumper, Precision; Released
+Standard: RightShoulder; 100.8 × 44.0; Right bumper, Speed boost; Released
+Standard: Xbox; 44.0 × 44.0; Xbox button, Reserved by Windows; Input is not reported to Relay
+Standard: Back; 44.0 × 44.0; View / Back, Windows accessibility settings; Released
+Standard: Start; 44.0 × 44.0; Menu / Start, Windows Start; Released
+Standard: LeftAxis; 88.0 × 88.0; Left stick movement, Move pointer; Centred
+Standard: RightAxis; 88.0 × 88.0; Right stick movement, Scroll; Centred
+Standard: LeftStick; 44.0 × 44.0; Left stick click, Relay keyboard; Released
+Standard: RightStick; 44.0 × 44.0; Right stick click, Accessibility hub; Released
+Standard: Up shaped hit region; 540 two-pixel samples; span 70.0×50.0.
+Standard: Up; 103.5 × 51.8; D-pad up, Move pointer up; Released
+Standard: Down shaped hit region; 516 two-pixel samples; span 70.0×48.0.
+Standard: Down; 103.5 × 51.8; D-pad down, Move pointer down; Released
+Standard: Left shaped hit region; 522 two-pixel samples; span 50.0×70.0.
+Standard: Left; 51.8 × 103.5; D-pad left, Move pointer left; Released
+Standard: Right shaped hit region; 516 two-pixel samples; span 48.0×70.0.
+Standard: Right; 51.8 × 103.5; D-pad right, Move pointer right; Released
+Standard: Y; 44.0 × 44.0; Y button, Close Magnifier; Selected. Released
+Standard: X; 44.0 × 44.0; X button, Middle click; Released
+Standard: B; 44.0 × 44.0; B button, Right click; Released
+Standard: A; 44.0 × 44.0; A button, Left click / drag; Released
+Adaptive front light: Xbox; 50.3 × 50.3; Xbox button, Reserved by Windows; Input is not reported to Relay
+Adaptive front light: Back; 50.3 × 50.3; View / Back, Windows accessibility settings; Released
+Adaptive front light: Start; 50.3 × 50.3; Menu / Start, Windows Start; Released
+Adaptive front light: Profile; 50.3 × 50.3; Profile button, Managed by the controller; Input is not reported to Relay
+Adaptive front light: Up shaped hit region; 501 two-pixel samples; span 68.0×48.0.
+Adaptive front light: Up; 100.6 × 50.3; D-pad up, Move pointer up; Released
+Adaptive front light: Down shaped hit region; 504 two-pixel samples; span 68.0×48.0.
+Adaptive front light: Down; 100.6 × 50.3; D-pad down, Move pointer down; Released
+Adaptive front light: Left shaped hit region; 484 two-pixel samples; span 48.0×68.0.
+Adaptive front light: Left; 50.3 × 100.6; D-pad left, Move pointer left; Released
+Adaptive front light: Right shaped hit region; 504 two-pixel samples; span 48.0×68.0.
+Adaptive front light: Right; 50.3 × 100.6; D-pad right, Move pointer right; Released
+Adaptive front light: A; 208.3 × 208.3; Left large button A, Left click / drag; Selected. Released
+Adaptive front light: B; 208.3 × 208.3; Right large button B, Right click; Released
+Adaptive ports light: Y; 47.4 × 81.0; Y socket, Close Magnifier; Logical input inactive. Accessory connection not reported
+Adaptive ports light: X; 47.4 × 81.0; X socket, Right click; Logical input inactive. Accessory connection not reported
+Adaptive ports light: B; 47.4 × 81.0; B socket, Right click; Logical input inactive. Accessory connection not reported
+Adaptive ports light: A; 47.4 × 81.0; A socket, Middle click; Selected. Matching logical input active. Accessory connection not reported
+Adaptive ports light: RightStick; 47.4 × 81.0; R3 socket, Accessibility hub; Logical input inactive. Accessory connection not reported
+Adaptive ports light: RightShoulder; 47.4 × 81.0; RB socket, Speed boost; Logical input inactive. Accessory connection not reported
+Adaptive ports light: RightTrigger; 47.4 × 81.0; RT socket, Magnifier: zoom in; Logical input inactive. Accessory connection not reported
+Adaptive ports light: LeftTrigger; 47.4 × 81.0; LT socket, Magnifier: zoom out; Logical input inactive. Accessory connection not reported
+Adaptive ports light: Start; 47.4 × 81.0; Menu socket, Windows Start; Logical input inactive. Accessory connection not reported
+Adaptive ports light: Back; 47.4 × 81.0; View socket, Windows accessibility settings; Logical input inactive. Accessory connection not reported
+Adaptive ports light: X2; 47.4 × 81.0; X2 joystick socket, No saved accessory; Logical input inactive. Accessory connection not reported
+Adaptive ports light: X1; 47.4 × 81.0; X1 joystick socket, No saved accessory; Logical input inactive. Accessory connection not reported
+Adaptive ports light: Xbox; 47.4 × 81.0; Xbox button socket, Reserved by Windows; Logical input inactive. Accessory connection not reported
+Adaptive ports light: LeftShoulder; 47.4 × 81.0; LB socket, Precision; Logical input inactive. Accessory connection not reported
+Adaptive ports light: LeftStick; 47.4 × 81.0; L3 socket, Relay keyboard; Logical input inactive. Accessory connection not reported
+Adaptive ports light: Right shaped hit region; 984 two-pixel samples; span 46.0×80.0.
+Adaptive ports light: Right; 47.4 × 81.0; → socket, Move pointer right; Logical input inactive. Accessory connection not reported
+Adaptive ports light: Up shaped hit region; 984 two-pixel samples; span 46.0×80.0.
+Adaptive ports light: Up; 47.4 × 81.0; ↑ socket, Move pointer up; Logical input inactive. Accessory connection not reported
+Adaptive ports light: Down shaped hit region; 984 two-pixel samples; span 46.0×80.0.
+Adaptive ports light: Down; 47.4 × 81.0; ↓ socket, Move pointer down; Logical input inactive. Accessory connection not reported
+Adaptive ports light: Left shaped hit region; 984 two-pixel samples; span 46.0×80.0.
+Adaptive ports light: Left; 47.4 × 81.0; ← socket, Move pointer left; Logical input inactive. Accessory connection not reported
+Adaptive ports light: USBLeft; 146.5 × 55.1; Left USB port, No saved accessory; Logical input inactive. Accessory connection not reported
+Adaptive ports light: USBRight; 146.5 × 55.1; Right USB port, No saved accessory; Logical input inactive. Accessory connection not reported
+Adaptive front dark: Xbox; 50.3 × 50.3; Xbox button, Reserved by Windows; Input is not reported to Relay
+Adaptive front dark: Back; 50.3 × 50.3; View / Back, Windows accessibility settings; Released
+Adaptive front dark: Start; 50.3 × 50.3; Menu / Start, Windows Start; Released
+Adaptive front dark: Profile; 50.3 × 50.3; Profile button, Managed by the controller; Input is not reported to Relay
+Adaptive front dark: Up shaped hit region; 501 two-pixel samples; span 68.0×48.0.
+Adaptive front dark: Up; 100.6 × 50.3; D-pad up, Move pointer up; Released
+Adaptive front dark: Down shaped hit region; 504 two-pixel samples; span 68.0×48.0.
+Adaptive front dark: Down; 100.6 × 50.3; D-pad down, Move pointer down; Released
+Adaptive front dark: Left shaped hit region; 484 two-pixel samples; span 48.0×68.0.
+Adaptive front dark: Left; 50.3 × 100.6; D-pad left, Move pointer left; Released
+Adaptive front dark: Right shaped hit region; 504 two-pixel samples; span 48.0×68.0.
+Adaptive front dark: Right; 50.3 × 100.6; D-pad right, Move pointer right; Released
+Adaptive front dark: A; 208.3 × 208.3; Left large button A, Left click / drag; Selected. Released
+Adaptive front dark: B; 208.3 × 208.3; Right large button B, Right click; Released
+Adaptive ports dark: Y; 47.4 × 81.0; Y socket, Close Magnifier; Logical input inactive. Accessory connection not reported
+Adaptive ports dark: X; 47.4 × 81.0; X socket, Right click; Logical input inactive. Accessory connection not reported
+Adaptive ports dark: B; 47.4 × 81.0; B socket, Right click; Logical input inactive. Accessory connection not reported
+Adaptive ports dark: A; 47.4 × 81.0; A socket, Middle click; Selected. Matching logical input active. Accessory connection not reported
+Adaptive ports dark: RightStick; 47.4 × 81.0; R3 socket, Accessibility hub; Logical input inactive. Accessory connection not reported
+Adaptive ports dark: RightShoulder; 47.4 × 81.0; RB socket, Speed boost; Logical input inactive. Accessory connection not reported
+Adaptive ports dark: RightTrigger; 47.4 × 81.0; RT socket, Magnifier: zoom in; Logical input inactive. Accessory connection not reported
+Adaptive ports dark: LeftTrigger; 47.4 × 81.0; LT socket, Magnifier: zoom out; Logical input inactive. Accessory connection not reported
+Adaptive ports dark: Start; 47.4 × 81.0; Menu socket, Windows Start; Logical input inactive. Accessory connection not reported
+Adaptive ports dark: Back; 47.4 × 81.0; View socket, Windows accessibility settings; Logical input inactive. Accessory connection not reported
+Adaptive ports dark: X2; 47.4 × 81.0; X2 joystick socket, No saved accessory; Logical input inactive. Accessory connection not reported
+Adaptive ports dark: X1; 47.4 × 81.0; X1 joystick socket, No saved accessory; Logical input inactive. Accessory connection not reported
+Adaptive ports dark: Xbox; 47.4 × 81.0; Xbox button socket, Reserved by Windows; Logical input inactive. Accessory connection not reported
+Adaptive ports dark: LeftShoulder; 47.4 × 81.0; LB socket, Precision; Logical input inactive. Accessory connection not reported
+Adaptive ports dark: LeftStick; 47.4 × 81.0; L3 socket, Relay keyboard; Logical input inactive. Accessory connection not reported
+Adaptive ports dark: Right shaped hit region; 984 two-pixel samples; span 46.0×80.0.
+Adaptive ports dark: Right; 47.4 × 81.0; → socket, Move pointer right; Logical input inactive. Accessory connection not reported
+Adaptive ports dark: Up shaped hit region; 984 two-pixel samples; span 46.0×80.0.
+Adaptive ports dark: Up; 47.4 × 81.0; ↑ socket, Move pointer up; Logical input inactive. Accessory connection not reported
+Adaptive ports dark: Down shaped hit region; 984 two-pixel samples; span 46.0×80.0.
+Adaptive ports dark: Down; 47.4 × 81.0; ↓ socket, Move pointer down; Logical input inactive. Accessory connection not reported
+Adaptive ports dark: Left shaped hit region; 984 two-pixel samples; span 46.0×80.0.
+Adaptive ports dark: Left; 47.4 × 81.0; ← socket, Move pointer left; Logical input inactive. Accessory connection not reported
+Adaptive ports dark: USBLeft; 146.5 × 55.1; Left USB port, No saved accessory; Logical input inactive. Accessory connection not reported
+Adaptive ports dark: USBRight; 146.5 × 55.1; Right USB port, No saved accessory; Logical input inactive. Accessory connection not reported
+Adaptive front contrast: Xbox; 50.3 × 50.3; Xbox button, Reserved by Windows; Input is not reported to Relay
+Adaptive front contrast: Back; 50.3 × 50.3; View / Back, Windows accessibility settings; Released
+Adaptive front contrast: Start; 50.3 × 50.3; Menu / Start, Windows Start; Released
+Adaptive front contrast: Profile; 50.3 × 50.3; Profile button, Managed by the controller; Input is not reported to Relay
+Adaptive front contrast: Up shaped hit region; 501 two-pixel samples; span 68.0×48.0.
+Adaptive front contrast: Up; 100.6 × 50.3; D-pad up, Move pointer up; Released
+Adaptive front contrast: Down shaped hit region; 504 two-pixel samples; span 68.0×48.0.
+Adaptive front contrast: Down; 100.6 × 50.3; D-pad down, Move pointer down; Released
+Adaptive front contrast: Left shaped hit region; 484 two-pixel samples; span 48.0×68.0.
+Adaptive front contrast: Left; 50.3 × 100.6; D-pad left, Move pointer left; Released
+Adaptive front contrast: Right shaped hit region; 504 two-pixel samples; span 48.0×68.0.
+Adaptive front contrast: Right; 50.3 × 100.6; D-pad right, Move pointer right; Released
+Adaptive front contrast: A; 208.3 × 208.3; Left large button A, Left click / drag; Selected. Released
+Adaptive front contrast: B; 208.3 × 208.3; Right large button B, Right click; Released
+Adaptive ports contrast: Y; 47.4 × 81.0; Y socket, Close Magnifier; Logical input inactive. Accessory connection not reported
+Adaptive ports contrast: X; 47.4 × 81.0; X socket, Right click; Logical input inactive. Accessory connection not reported
+Adaptive ports contrast: B; 47.4 × 81.0; B socket, Right click; Logical input inactive. Accessory connection not reported
+Adaptive ports contrast: A; 47.4 × 81.0; A socket, Middle click; Selected. Matching logical input active. Accessory connection not reported
+Adaptive ports contrast: RightStick; 47.4 × 81.0; R3 socket, Accessibility hub; Logical input inactive. Accessory connection not reported
+Adaptive ports contrast: RightShoulder; 47.4 × 81.0; RB socket, Speed boost; Logical input inactive. Accessory connection not reported
+Adaptive ports contrast: RightTrigger; 47.4 × 81.0; RT socket, Magnifier: zoom in; Logical input inactive. Accessory connection not reported
+Adaptive ports contrast: LeftTrigger; 47.4 × 81.0; LT socket, Magnifier: zoom out; Logical input inactive. Accessory connection not reported
+Adaptive ports contrast: Start; 47.4 × 81.0; Menu socket, Windows Start; Logical input inactive. Accessory connection not reported
+Adaptive ports contrast: Back; 47.4 × 81.0; View socket, Windows accessibility settings; Logical input inactive. Accessory connection not reported
+Adaptive ports contrast: X2; 47.4 × 81.0; X2 joystick socket, No saved accessory; Logical input inactive. Accessory connection not reported
+Adaptive ports contrast: X1; 47.4 × 81.0; X1 joystick socket, No saved accessory; Logical input inactive. Accessory connection not reported
+Adaptive ports contrast: Xbox; 47.4 × 81.0; Xbox button socket, Reserved by Windows; Logical input inactive. Accessory connection not reported
+Adaptive ports contrast: LeftShoulder; 47.4 × 81.0; LB socket, Precision; Logical input inactive. Accessory connection not reported
+Adaptive ports contrast: LeftStick; 47.4 × 81.0; L3 socket, Relay keyboard; Logical input inactive. Accessory connection not reported
+Adaptive ports contrast: Right shaped hit region; 984 two-pixel samples; span 46.0×80.0.
+Adaptive ports contrast: Right; 47.4 × 81.0; → socket, Move pointer right; Logical input inactive. Accessory connection not reported
+Adaptive ports contrast: Up shaped hit region; 984 two-pixel samples; span 46.0×80.0.
+Adaptive ports contrast: Up; 47.4 × 81.0; ↑ socket, Move pointer up; Logical input inactive. Accessory connection not reported
+Adaptive ports contrast: Down shaped hit region; 984 two-pixel samples; span 46.0×80.0.
+Adaptive ports contrast: Down; 47.4 × 81.0; ↓ socket, Move pointer down; Logical input inactive. Accessory connection not reported
+Adaptive ports contrast: Left shaped hit region; 984 two-pixel samples; span 46.0×80.0.
+Adaptive ports contrast: Left; 47.4 × 81.0; ← socket, Move pointer left; Logical input inactive. Accessory connection not reported
+Adaptive ports contrast: USBLeft; 146.5 × 55.1; Left USB port, No saved accessory; Logical input inactive. Accessory connection not reported
+Adaptive ports contrast: USBRight; 146.5 × 55.1; Right USB port, No saved accessory; Logical input inactive. Accessory connection not reported

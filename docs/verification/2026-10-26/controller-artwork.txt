@@ -1,0 +1,19 @@
+PASS: each surface loads its intended embedded controller bitmap at full intrinsic resolution. Regular themes render the bitmap only when its pixels cover the current display resolution; otherwise they retain sharp vector controls without shrinking input targets. High contrast uses vector controls. Image aesthetics, overlay alignment and physical hardware authenticity require visual review alongside these measurements.
+
+Standard: artwork edges reachable; horizontal scroll range 0.0.
+Standard: embedded Assets/Controllers/standard-front.png; 1433×874; visible True; rendered bounds 79.43913043478261,54.400000000000006,598.1217391304348,364.8; vector fallback for display resolution False.
+Standard light: artwork edges reachable; horizontal scroll range 0.0.
+Standard light: embedded Assets/Controllers/standard-front.png; 1433×874; visible True; rendered bounds 79.43913043478261,54.400000000000006,598.1217391304348,364.8; vector fallback for display resolution False.
+Adaptive front light: artwork edges reachable; horizontal scroll range 0.0.
+Adaptive front light: embedded Assets/Controllers/adaptive-front.png; 1796×668; visible True; rendered bounds 20.099999999999994,13.897550111358555,716.8,266.6048997772828; vector fallback for display resolution False.
+Adaptive ports light: artwork edges reachable; horizontal scroll range 0.0.
+Adaptive ports light: embedded Assets/Controllers/adaptive-rear.png; 2101×306; visible True; rendered bounds 19.33846153846153,52.621506242448675,1099.323076923077,160.11083366894886; vector fallback for display resolution False.
+Standard dark: artwork edges reachable; horizontal scroll range 0.0.
+Standard dark: embedded Assets/Controllers/standard-front-dark.png; 1435×866; visible True; rendered bounds 76.25519630484985,54.400000000000006,604.4896073903003,364.8; vector fallback for display resolution False.
+Adaptive front dark: artwork edges reachable; horizontal scroll range 0.0.
+Adaptive front dark: embedded Assets/Controllers/adaptive-front.png; 1796×668; visible True; rendered bounds 20.099999999999994,13.897550111358555,716.8,266.6048997772828; vector fallback for display resolution False.
+Adaptive ports dark: artwork edges reachable; horizontal scroll range 0.0.
+Adaptive ports dark: embedded Assets/Controllers/adaptive-rear.png; 2101×306; visible True; rendered bounds 19.33846153846153,52.621506242448675,1099.323076923077,160.11083366894886; vector fallback for display resolution False.
+Standard contrast: embedded Assets/Controllers/standard-front-dark.png; 1435×866; visible False; rendered bounds Empty; vector fallback for display resolution False.
+Adaptive front contrast: embedded Assets/Controllers/adaptive-front.png; 1796×668; visible False; rendered bounds Empty; vector fallback for display resolution False.
+Adaptive ports contrast: embedded Assets/Controllers/adaptive-rear.png; 2101×306; visible False; rendered bounds Empty; vector fallback for display resolution False.

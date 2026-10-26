@@ -8,7 +8,7 @@
 
 > Source review repository. No installable release has been published here. Read the build instructions and verification limits before evaluating the app.
 
-**Review status:** the Windows build and all 358 regression tests passed on 25 October 2026. The installed-app interface suite reported an Adaptive Controller artwork bounds failure; see [the fresh verification record](docs/verification/2026-10-25/README.md).
+**Review status:** the full Windows workflow passed on 26 October 2026: all 358 regression tests, app and package builds, installed-app interface checks, reinstallation and removal. See [the current verification record](docs/verification/2026-10-26/README.md).
 
 **Use an Xbox controller to move, click, scroll and type in Windows.**
 

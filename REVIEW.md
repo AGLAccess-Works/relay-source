@@ -24,12 +24,14 @@ The supplied [22 October verification record](HANDOFF-VERIFICATION.md) reports 3
 
 The Windows workflow runs the existing regression, portable/installer build and installer lifecycle checks. Check the [current workflow results](https://github.com/AGLAccess-Works/relay-source/actions) for execution status. Live screen-reader output, physical controllers/accessories, native pointer delivery and low vision user sessions still need hands-on acceptance as described in the audit.
 
-## Fresh Windows results — 25 October 2026
+## Current Windows results — 26 October 2026
 
-The [first GitHub Windows run](https://github.com/AGLAccess-Works/relay-source/actions) passed **358 regression tests** and built the self-contained app, portable package and installer. The installed-app smoke suite then **failed its Adaptive ports light artwork bounds check**. Reinstall verification was not reached. The failing check remains enabled.
+The [full Windows workflow](https://github.com/AGLAccess-Works/relay-source/actions/runs/40297058304) passed **358 regression tests**, built the self-contained app and portable/installer packages, and passed the complete installed-app interface suite, same-version reinstall and uninstall checks. Reflow covered 220 page/window/text-scale combinations and 3,480 action targets.
 
-See [the verification record and exact failure](docs/verification/2026-10-25/README.md). Investigate the rendering/layout result before considering Windows interface acceptance complete.
+The earlier failures came from an artwork check that did not account for intentional horizontal scrolling and a desktop layout check running on a display smaller than its requested window. The artwork check now verifies board containment and scroll reachability; the workflow sets and verifies a 1920 × 1080 display. Existing size, sharpness and desktop-layout assertions remain enabled. No runtime application layout was changed.
+
+See [the current evidence and remaining hands-on acceptance](docs/verification/2026-10-26/README.md). The [25 October record](docs/verification/2026-10-25/README.md) remains historical evidence.
 
 ## Repository preparation
 
-Added Alex Liddell / AGL Access Works attribution, review and contribution guides, security reporting, pinned GitHub Actions and monthly action update checks. Corrected the main README's legacy repository links and clarified that this repository has no release uploads. Assembly metadata now credits Alex Liddell and AGL Access Works. Application logic and test fixtures were retained. See [credits and licensing status](CREDITS.md).
+Added Alex Liddell / AGL Access Works attribution, review and contribution guides, security reporting, pinned GitHub Actions and monthly action update checks. Corrected the main README's legacy repository links and clarified that this repository has no release uploads. Assembly metadata now credits Alex Liddell and AGL Access Works. Application logic was retained. The 26 October updates corrected verification and runner setup as described above. See [credits and licensing status](CREDITS.md).
