@@ -45,7 +45,11 @@ try {
     $results.Add('PASS: per-user install, executable, uninstall registration, and Start menu shortcut target.')
     $smokeDir = Join-Path $testRoot 'installed-smoke'
     $app = Start-Process -FilePath $appExe -ArgumentList @('--smoke-test', "`"$smokeDir`"") -WindowStyle Hidden -Wait -PassThru
-    if ($app.ExitCode -ne 0 -or !(Test-Path -LiteralPath (Join-Path $smokeDir 'result.txt'))) { throw 'Installed app smoke test failed.' }
+    if ($app.ExitCode -ne 0 -or !(Test-Path -LiteralPath (Join-Path $smokeDir 'result.txt'))) {
+        $failurePath = Join-Path $smokeDir 'failure.txt'
+        $detail = if (Test-Path -LiteralPath $failurePath) { Get-Content -LiteralPath $failurePath -Raw } else { 'No failure report was written.' }
+        throw "Installed app smoke test failed (exit $($app.ExitCode)). $detail"
+    }
     $results.Add('PASS: installed self-contained app startup, UI, settings, and paused hardware service smoke test.')
     Invoke-Setup 'upgrade.log'
     if (!(Test-Path -LiteralPath $appExe)) { throw 'Same-version reinstall lost the executable.' }
