@@ -129,9 +129,36 @@ public partial class MainWindow
             var bounds = LiveSurface.ArtworkRenderedBounds;
             if (shouldBeVisible && enoughPixels)
             {
-                if (bounds.IsEmpty || bounds.Width < 360 || bounds.Height < 120 || bounds.Left < -.5 || bounds.Top < -.5 ||
-                    bounds.Right > LiveSurface.ActualWidth + .5 || bounds.Bottom > LiveSurface.ActualHeight + .5)
-                    throw new InvalidOperationException($"{mode} artwork is tiny or clipped in the desktop hero: {bounds}; surface {LiveSurface.RenderSize}.");
+                if (LiveSurface.Content is not ScrollViewer scroll || scroll.Content is not FrameworkElement board)
+                    throw new InvalidOperationException(mode + " has no scrollable controller board.");
+                // The ports board deliberately stays wide enough for accessible targets.
+                // Check containment in that board, then prove its ends can be reached in
+                // the viewport instead of treating intentional horizontal scroll as clipping.
+                var boardBounds = new Rect(board.TranslatePoint(new Point(), LiveSurface), board.RenderSize);
+                if (bounds.IsEmpty || bounds.Width < 360 || bounds.Height < 120 ||
+                    bounds.Left < boardBounds.Left - .5 || bounds.Top < -.5 ||
+                    bounds.Right > boardBounds.Right + .5 || bounds.Bottom > LiveSurface.ActualHeight + .5)
+                    throw new InvalidOperationException($"{mode} artwork is tiny or clipped in its controller board: {bounds}; board {boardBounds}.");
+                double originalOffset = scroll.HorizontalOffset;
+                try
+                {
+                    scroll.ScrollToLeftEnd(); DrainInvocations();
+                    var leftBounds = LiveSurface.ArtworkRenderedBounds;
+                    if (leftBounds.Left < -.5 || leftBounds.Left > LiveSurface.ActualWidth - 1)
+                        throw new InvalidOperationException(mode + " artwork left edge cannot be reached by scrolling.");
+                    if (leftBounds.Right > LiveSurface.ActualWidth + .5 &&
+                        (scroll.ScrollableWidth <= 0 || scroll.ComputedHorizontalScrollBarVisibility != Visibility.Visible))
+                        throw new InvalidOperationException(mode + " overflows without an available horizontal scrollbar.");
+                    scroll.ScrollToRightEnd(); DrainInvocations();
+                    var rightBounds = LiveSurface.ArtworkRenderedBounds;
+                    if (rightBounds.Right > LiveSurface.ActualWidth + .5 || rightBounds.Right < 1)
+                        throw new InvalidOperationException(mode + " artwork right edge cannot be reached by scrolling.");
+                    artworkReport.AppendLine($"{mode}: artwork edges reachable; horizontal scroll range {scroll.ScrollableWidth:0.0}.");
+                }
+                finally
+                {
+                    scroll.ScrollToHorizontalOffset(originalOffset); DrainInvocations();
+                }
                 double intrinsicRatio = source.PixelWidth / (double)source.PixelHeight;
                 if (Math.Abs(bounds.Width / bounds.Height / intrinsicRatio - 1) > .01)
                     throw new InvalidOperationException(mode + " stretches the controller artwork instead of preserving its aspect ratio.");
